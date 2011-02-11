@@ -1,0 +1,36 @@
+.x-indexbar-item {
+	font-size: 0.7em;
+	line-height: 1.75em;
+}
+
+body, html {
+	overflow:hidden;
+}
+
+.x-form-label {
+	padding: 3px;
+}
+.x-field {
+	min-height: 30px;
+}
+
+.x-form-label span {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.x-form-field-container input {
+	font-size: 13px;
+}
+
+.x-form .x-panel-body {
+	padding: 0;
+	margin-left: 3px;
+}
+
+.x-form-fieldset-title {
+	margin: .5em .4em .3em;
+}
+.x-form-field-container {
+	background: white;
+}
