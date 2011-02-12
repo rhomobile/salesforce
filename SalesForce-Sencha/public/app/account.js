@@ -161,7 +161,6 @@ account.SaveButton = new Ext.Button({
     handler: function() {
         if(account.DetailForm.user){
             account.FormPanel.updateRecord(account.DetailForm.user, true);
-			setTimeout(function(){rho_sync();},250);
         }
         account.FormPanel.submit({
             waitMsg : {message:'Submitting', cls : 'demos-loading'}
@@ -184,6 +183,7 @@ account.DetailPanel = new Ext.Panel({
 		{
 			text: 'Back',
 			handler: function() {
+				account.SingleStore.proxy.url = '/app/Saccount/json';
 				account.Page.setActiveItem(0);
 			}
 		}

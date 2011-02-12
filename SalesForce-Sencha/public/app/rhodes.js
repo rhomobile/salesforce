@@ -32,6 +32,8 @@ function contact_sync_finished(){
 	Ext.regModel('SingleContact', {
 		fields: contactfields
 	});
+
+	oldurl = contact.SingleStore.proxy.url;
 	
 	contact.SingleStore = new Ext.data.JsonStore({
 		autoDestroy: true,
@@ -44,7 +46,7 @@ function contact_sync_finished(){
 		},
 		proxy: {
 			type: 'ajax',
-			url: '/app/Scontact/json',
+			url: oldurl,
 			reader: {
 				type: 'json',
 				root: 'contacts',
@@ -57,7 +59,9 @@ function contact_sync_finished(){
 				fn: function(store,array,success) {
 					contact.DetailForm.user = store.data.items[0];
 					contact.FormPanel.loadModel(contact.DetailForm.user);
-					contact.Page.setActiveItem(1);
+					if(contact.SingleStore.proxy.url.indexOf('?') != -1) {
+						contact.Page.setActiveItem(1);
+					}
 				}
 			}
 		}
@@ -74,6 +78,8 @@ function contact_sync_finished(){
 	contact.DetailPanel.doLayout();
 	
 	contact.DataStore.load();
+	contact.SingleStore.load();
+
 	contact.ContactList.refresh(); 
 	contact.ContactList.setLoading(false,true);
 	
@@ -84,6 +90,8 @@ function account_sync_finished(){
 	Ext.regModel('SingleAccount', {
 		fields: accountfields
 	});
+
+	oldurl = account.SingleStore.proxy.url;
 	
 	account.SingleStore = new Ext.data.JsonStore({
 		autoDestroy: true,
@@ -96,7 +104,7 @@ function account_sync_finished(){
 		},
 		proxy: {
 			type: 'ajax',
-			url: '/app/Saccount/json',
+			url: oldurl,
 			reader: {
 				type: 'json',
 				root: 'accounts',
@@ -109,7 +117,9 @@ function account_sync_finished(){
 				fn: function(store,array,success) {
 					account.DetailForm.user = store.data.items[0];
 					account.FormPanel.loadModel(account.DetailForm.user);
-					account.Page.setActiveItem(1);
+					if(account.SingleStore.proxy.url.indexOf('?') != -1) {
+						account.Page.setActiveItem(1);
+					}
 				}
 			}
 		}
@@ -126,6 +136,8 @@ function account_sync_finished(){
 	account.DetailPanel.doLayout();
 	
 	account.DataStore.load();
+	account.SingleStore.load();
+	
 	account.AccountList.refresh(); 
 	account.AccountList.setLoading(false,true);
 	

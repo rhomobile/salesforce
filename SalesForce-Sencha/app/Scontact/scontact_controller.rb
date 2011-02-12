@@ -111,12 +111,15 @@ class ScontactController < Rho::RhoController
 
   # POST /Scontact/{1}/update
   def update
-    contact = {}
-    contact["name"] = @params["name"]
-    contact["phone"] = @params["phone"]
-    contact["email"] = @params["email"]
-    @scontact = Scontact.find(@params['id'])
-    @scontact.update_attributes(contact) if @scontact
+    @scontact = Scontact.find(@params['object'])
+    
+    @params.reject! do |k,v|
+      k == "object"
+    end
+    
+    @scontact.update_attributes(@params) if @scontact
+    SyncEngine.dosync
+    
     render :string => "0"
   end
 

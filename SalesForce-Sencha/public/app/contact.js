@@ -161,7 +161,6 @@ contact.SaveButton = new Ext.Button({
     handler: function() {
         if(contact.DetailForm.user){
             contact.FormPanel.updateRecord(contact.DetailForm.user, true);
-			setTimeout(function(){rho_sync();},250);
         }
         contact.FormPanel.submit({
             waitMsg : {message:'Submitting', cls : 'demos-loading'}
@@ -184,6 +183,7 @@ contact.DetailPanel = new Ext.Panel({
 		{
 			text: 'Back',
 			handler: function() {
+				contact.SingleStore.proxy.url = '/app/Scontact/json';
 				contact.Page.setActiveItem(0);
 			}
 		}

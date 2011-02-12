@@ -49,6 +49,12 @@ class SettingsController < Rho::RhoController
         WebView.navigate Rho::RhoConfig.start_path
       end
     end
+    
+    if @params['status'] == "error"
+      SyncEngine.stop_sync
+      Rhom::Rhom.database_fullclient_reset_and_logout
+      WebView.navigate Rho::RhoConfig.start_path
+    end
   end
 
   def do_login

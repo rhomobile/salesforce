@@ -111,12 +111,14 @@ class SaccountController < Rho::RhoController
 
   # POST /Saccount/{1}/update
   def update
-    account = {}
-    account["name"] = @params["name"]
-    account["phone"] = @params["phone"]
-    account["email"] = @params["email"]
-    @saccount = Saccount.find(@params['id'])
-    @saccount.update_attributes(account) if @saccount
+    @saccount = Saccount.find(@params['object'])
+    
+    @params.reject! do |k,v|
+      k == "object"
+    end
+    
+    @saccount.update_attributes(@params) if @saccount
+    SyncEngine.dosync
     render :string => "0"
   end
 
