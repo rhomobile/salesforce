@@ -21,7 +21,18 @@ class ScontactController < Rho::RhoController
                 }
       end
     else
+      meta = Scontact.metadata
       @contacts.each do |contact|
+        contact.vars.each do |k,v| 
+          key = k.to_s.strip
+          if meta['datafields'][key] && meta['datafields'][key]["type"] == "reference"
+            begin
+              model = Object.const_get("S#{Scontact.metadata['datafields'][key]["referenceTo"][0].downcase}".to_sym)
+              contact.vars[k] = model.find(v).name
+            rescue Exception => e
+            end
+          end
+        end
         temp << contact.vars
       end
     end
@@ -42,10 +53,18 @@ class ScontactController < Rho::RhoController
     contact = Scontact.find(:first)
     vars = contact.vars if contact 
     keys = vars.nil? ? [] : vars.keys
-    puts keys.inspect
     render :string => ::JSON.generate(keys)
   end
-  
+
+  def get_model_value(string)
+    params = string.split(',')
+    model = params[0]
+    id = params[1]
+    key = params[2]
+    
+    model = Object.const_get(model.to_sym)
+    model.find(id).vars[key]
+  end
 
   #GET /Scontact
   def index

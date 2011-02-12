@@ -40,7 +40,7 @@ class SettingsController < Rho::RhoController
   def sync_notify
     if @params['status'] == "ok"
       WebView.execute_js("contact_sync_finished();") if @params["source_name"] == "Scontact"
-      WebView.execute_js("account.DataStore.load();account.AccountList.refresh(); account.AccountList.setLoading(false,true);") if @params["source_name"] == "Saccount"
+      WebView.execute_js("account_sync_finished();") if @params["source_name"] == "Saccount"
     end
     
     if @params['status'] == "complete"

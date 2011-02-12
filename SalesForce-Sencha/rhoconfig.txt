@@ -21,7 +21,7 @@ MaxLogFileSize = 0
 
 # Sync server url. Typically this will look like 'http://<hostname>:<port>/application'
 # For example: 'http://localhost:9292/application'
-syncserver = 'http://localhost:9292/application'
+syncserver = 'http://192.168.1.103:9292/application'
 
 # To disable auto sync, uncomment the following line.
 # sync_poll_interval=0

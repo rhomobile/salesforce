@@ -26,6 +26,7 @@ Ext.setup({
     onReady: function() {
 		if(rho_logged_in() == 1) {
 			contact_sync_finished();
+			account_sync_finished();
 			account.AccountList.setLoading(true,true);
 			contact.ContactList.setLoading(true,true);
 			//rho_sync();

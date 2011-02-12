@@ -43,7 +43,7 @@ class Scontact < SourceAdapter
     )
     
     parsed["fields"].each do |field|
-      puts "#{field["name"]}::#{field["type"]}::#{field["length"]}"
+      #puts "#{field["name"]}::#{field["type"]}::#{field["length"]}"
       @fields << field
     end
 
@@ -51,22 +51,36 @@ class Scontact < SourceAdapter
 
   def metadata
     show = []
+    data = {}
     @fields.each do |f|
+
+
       key = "" + f["name"]
       key[0] = key[0,1].downcase
       key = "object" if key == "id"
+
+      data[key] = f
+
+      field = {}
+      type = "sfsenchafield"
+      if f["type"] == "reference"
+        type = 'sfsenchalinkfield'
+        f["label"].gsub!(/ ID/,"")
+      elsif f["type"] == "id"
+        type = 'sfsenchahidden'
+      end      
       field = {
-         :label => f["label"],
-         :name => "#{key}",
-         :type => 'sfsenchafield',
-         :fieldtype => f["type"]
-       }      
+        :label => f["label"],
+        :name => "#{key}",
+        :type => type,
+        :fieldtype => f["type"]
+      }
       show << field
     end
-    
-    {'showfields' => {:type => 'senchafieldset', :children => show}}.to_json
+
+    {'showfields' => {:type => 'senchafieldset', :children => show}, 'datafields' => data}.to_json
   end
-  
+
   def query(params=nil)
 
     @result = {}

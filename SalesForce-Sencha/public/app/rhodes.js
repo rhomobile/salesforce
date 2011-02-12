@@ -78,3 +78,55 @@ function contact_sync_finished(){
 	contact.ContactList.setLoading(false,true);
 	
 }
+
+function account_sync_finished(){
+	accountfields = getPage('/app/Saccount/model',true);
+	Ext.regModel('SingleAccount', {
+		fields: accountfields
+	});
+	
+	account.SingleStore = new Ext.data.JsonStore({
+		autoDestroy: true,
+		storeId: 'singleAccountStore',
+
+		model: 'SingleAccount',
+		sorters: 'name',
+		getGroupString : function(record) {
+			return record.get('name')[0];
+		},
+		proxy: {
+			type: 'ajax',
+			url: '/app/Saccount/json',
+			reader: {
+				type: 'json',
+				root: 'accounts',
+				idProperty: 'id'
+			}
+		},
+		idProperty: 'id',
+		listeners: {
+			load: {
+				fn: function(store,array,success) {
+					account.DetailForm.user = store.data.items[0];
+					account.FormPanel.loadModel(account.DetailForm.user);
+					account.Page.setActiveItem(1);
+				}
+			}
+		}
+	});	
+	
+	
+	
+	account.DetailForm.items[0].items = getPage('/app/Saccount/metafields',true);
+	account.FormPanel = new Ext.form.FormPanel(account.DetailForm);
+	account.FormPanel.doLayout();
+	
+	account.DetailPanel.remove(account.DetailPanel.items.items[0]);
+	account.DetailPanel.insert(0,account.FormPanel);
+	account.DetailPanel.doLayout();
+	
+	account.DataStore.load();
+	account.AccountList.refresh(); 
+	account.AccountList.setLoading(false,true);
+	
+}

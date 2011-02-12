@@ -1,5 +1,7 @@
 gem 'soap4r'
 require 'defaultDriver'
+require 'json'
+require 'rest_client'
 
 class Saccount < SourceAdapter
   def initialize(source,credential)
@@ -7,33 +9,117 @@ class Saccount < SourceAdapter
   end
  
   def login
-    
+
     auth = ClientAuthHeaderHandler.new
-    auth.sessionid = Store.get_value("#{current_user.login}:session")
+    @sessionid = Store.get_value("#{current_user.login}:session")
+    auth.sessionid =  @sessionid
     endpoint_url = Store.get_value("#{current_user.login}:endpoint_url")
     @force = Soap.new(endpoint_url)
     @force.headerhandler << auth
+
+    @resturl = endpoint_url.gsub(/services.*/,"services/data/v20.0")
+    @restheaders = {
+      "Accept" => "*/*", 
+      "Authorization" => "OAuth #{@sessionid.split('!')[1]}", 
+      "X-PrettyPrint" => "1"
+    }
     
-  end
- 
-  def query(params=nil)
-    # TODO: Query your backend data source and assign the records 
-    # to a nested hash structure called @result. For example:
-    # @result = { 
-    #   "1"=>{"name"=>"Acme", "industry"=>"Electronics"},
-    #   "2"=>{"name"=>"Best", "industry"=>"Software"}
-    # }
+    @postheaders = {
+      "Accept" => "*/*", 
+      "Content-Type" => "application/json", 
+      "Authorization" => "OAuth #{@sessionid.split('!')[1]}", 
+      "X-PrettyPrint" => "1"
+    }
     
-    @result = {}
+    @fields = []
+    #puts "#{resturl}/Account/describe/"
+    #puts "Authorization: OAuth #{@sessionid.split('!')[1]}"
+    parsed=
+    JSON.parse(
+      RestClient.get(
+        "#{@resturl}/sobjects/Account/describe/", 
+        @restheaders
+      ).body
+    )
     
-    querystr = QueryAll.new("SELECT Id,Name,Phone,Website from Account")
-    accounts = @force.query(querystr).result.records
-    accounts.each do |a|
-      @result[a.id] = { "id" => a.id, "name" => a.name, "phone" => a.phone, "website" => a.website } 
+    parsed["fields"].each do |field|
+      #puts "#{field["name"]}::#{field["type"]}::#{field["length"]}"
+      @fields << field
     end
-    
+
   end
- 
+
+  def metadata
+    show = []
+    data = {}
+    @fields.each do |f|
+
+
+      key = "" + f["name"]
+      key[0] = key[0,1].downcase
+      key = "object" if key == "id"
+
+      data[key] = f
+
+      field = {}
+      type = "sfsenchafield"
+      if f["type"] == "reference"
+        type = 'sfsenchalinkfield'
+        f["label"].gsub!(/ ID/,"")
+      elsif f["type"] == "id"
+        type = 'sfsenchahidden'
+      end      
+      field = {
+        :label => f["label"],
+        :name => "#{key}",
+        :type => type,
+        :fieldtype => f["type"]
+      }
+      show << field
+    end
+
+    {'showfields' => {:type => 'senchafieldset', :children => show}, 'datafields' => data}.to_json
+  end
+
+  def query(params=nil)
+
+    @result = {}
+
+    fieldquery = ""
+    @fields.each do |f|
+      fieldquery << ",#{f["name"]}"
+    end
+    fieldquery[0] = " "
+
+    querystr = "SELECT #{fieldquery} from Account"
+
+    requesturl = @resturl + "/query/?q=" + CGI::escape(querystr)
+
+    raw_data = RestClient.get(requesturl, @restheaders) do |response,request, result, &block| 
+      case response.code 
+      when 200 
+        p "It worked !" 
+        response.body
+      when 400
+        p "It failed !"
+        p response.body
+        raise "400 error"
+      end
+    end
+
+    parsed_data = JSON.parse raw_data
+
+    parsed_data["records"].each do |a|
+      @result[a["Id"]] = {}
+      @fields.each do |f|
+        key = "" + f["name"]
+        key[0] = key[0,1].downcase
+        @result[a["Id"]][key] = a[f["name"]]
+      end
+    end
+
+  end
+  
   def sync
     # Manipulate @result before it is saved, or save it 
     # yourself using the Rhosync::Store interface.
@@ -45,13 +131,22 @@ class Saccount < SourceAdapter
     # TODO: Create a new record in your backend data source
     # If your rhodes rhom object contains image/binary data 
     # (has the image_uri attribute), then a blob will be provided
-    raise "Please provide some code to create a single record in the backend data source using the create_hash"
+
   end
  
   def update(update_hash)
     # TODO: Update an existing record in your backend data source
-    raise "Please provide some code to update a single record in the backend data source using the update_hash"
-  end
+    account = Account.new
+    names = update_hash["name"].split(' ') if update_hash["name"]
+    
+    account.id = update_hash["id"]
+    account.firstName = names[0] if update_hash["name"]
+    account.lastName = names[1] if update_hash["name"]
+    account.phone = update_hash["phone"]
+    account.email = update_hash["email"]
+    result = @force.update(Update.new([account]))
+    #puts result.inspect
+ end
  
   def delete(object_id)
     # TODO: write some code here if applicable

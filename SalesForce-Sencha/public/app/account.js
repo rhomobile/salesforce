@@ -1,56 +1,100 @@
 Ext.ns('account', 'Ext.ux');
 
+account.Page = '';
+
 // model field definition
 Ext.regModel('Account', {
-    fields: ['name','phone','website','id']
+	fields: ['name','id']
 });
 
 account.DataStore = new Ext.data.JsonStore({
-    autoDestroy: true,
-    storeId: 'accountStore',
+	autoDestroy: true,
+	autoLoad: true,
+	storeId: 'accountStore',
 
-   model: 'Account',
-   sorters: 'name',
-   getGroupString : function(record) {
-       return record.get('name')[0];
-   },
-proxy: {
-    type: 'ajax',
-    url: '/app/Saccount/alljson',
-    reader: {
-        type: 'json',
-    root: 'accounts',
-        idProperty: 'id'
-    }
-},
-  idProperty: 'id',
+	model: 'Account',
+	sorters: 'name',
+	getGroupString : function(record) {
+		return record.get('name')[0];
+	},
+	proxy: {
+		type: 'ajax',
+		url: '/app/Saccount/json',
+		reader: {
+			type: 'json',
+			root: 'accounts',
+			idProperty: 'id'
+		}
+	},
+	idProperty: 'id',
 });
 
-account.DataStore.load();
+
+
+Ext.regModel('SingleAccount', {
+	fields: ['name','phone','email','id', 'account_id']
+});
+
+//account.SingleStore = '';
+account.SingleStore = new Ext.data.JsonStore({
+	autoDestroy: true,
+	storeId: 'singleAccountStore',
+
+	model: 'SingleAccount',
+	sorters: 'name',
+	getGroupString : function(record) {
+		return record.get('name')[0];
+	},
+	proxy: {
+		type: 'ajax',
+		url: '/app/Saccount/json',
+		reader: {
+			type: 'json',
+			root: 'accounts',
+			idProperty: 'id'
+		}
+	},
+	idProperty: 'id',
+	listeners: {
+		load: {
+			fn: function(store,array,success) {
+				account.DetailForm.user = store.data.items[0];
+				account.FormPanel.loadModel(account.DetailForm.user);
+				setTimeout('account.Page.setActiveItem(1);',50);
+			}
+		}
+	}
+});
+
 
 
 account.AccountList = new Ext.List({
-    itemTpl: '<div class="account"><strong>{name}</strong></div>',
+    itemTpl: '<div class="account2"><strong>{name}</strong></div>',
     selModel: {
         mode: 'SINGLE',
         allowDeselect: false
     },
     grouped: true,
     indexBar: true,
-
 	listeners: {
 		itemtap: function(view, index, item, e  ){ 
-				account.DetailForm.user = view.store.data.items[index];
-				account.FormPanel.loadModel(account.DetailForm.user);
+//				account.DetailForm.user = view.store.data.items[index];
+//				account.FormPanel.loadModel(account.DetailForm.user);
+				account.FormPanel.doLayout();
+				item_id = view.store.data.items[index].data.id;
+				account.SingleStore.proxy.url = '/app/Saccount/json?id=' + item_id;
+				account.SingleStore.load();
 		 }
 	},
 
+
     store: account.DataStore,
-	width:250,
+//	width:225,
 	height: '100%'
 	
 
 });
+
 
 
 account.DetailForm = {
@@ -61,11 +105,12 @@ account.DetailForm = {
         {
             xtype: 'fieldset',
             title: 'Account Details',
-            instructions: '',
+            instructions: 'Please enter the information above.',
+			width: 300,
             defaults: {
-                required: true,
+//                required: true,
                 labelAlign: 'left',
-                labelWidth: '30%'
+                labelWidth: '35%'
             },
             items: [
             {
@@ -81,10 +126,10 @@ account.DetailForm = {
 	            useClearIcon: true,
 	            autoCapitalize : false
 	        }, {
-                xtype: 'textfield',
-                name : 'website',
-                label: 'Website',
-                placeHolder: 'http://blah.com',
+                xtype: 'emailfield',
+                name : 'email',
+                label: 'Email',
+                placeHolder: 'john@example.com',
                 useClearIcon: true
             }, 	{
                 xtype: 'hiddenfield',
@@ -105,17 +150,15 @@ account.DetailForm = {
     
 };
 
-account.FormPanel = new Ext.form.FormPanel(Ext.apply(account.DetailForm,{
-	width: 500
-}));
+account.FormPanel = new Ext.form.FormPanel(account.DetailForm);
+
 
 account.SaveButton = new Ext.Button({
     text: 'Save changes',
 	ui: 'confirm',
-	margin: '0 0 0 150',
-	width: 200,
+	margin: '5 25 1 25',
     iconMask: true,
-	handler: function() {
+    handler: function() {
         if(account.DetailForm.user){
             account.FormPanel.updateRecord(account.DetailForm.user, true);
 			setTimeout(function(){rho_sync();},250);
@@ -123,22 +166,46 @@ account.SaveButton = new Ext.Button({
         account.FormPanel.submit({
             waitMsg : {message:'Submitting', cls : 'demos-loading'}
         })
-    }
+	}
 });
 
 account.DetailPanel = new Ext.Panel({
 	id: 'accountdetail',
-	width: '100%',
-	height: '100%',
+	// width: '100%',
+	// height: '100%',
 	cls: 'detailpanel',
-	items: [account.FormPanel, account.SaveButton]
+	scroll: 'vertical',
+	items: [account.FormPanel, account.SaveButton],
+	dockedItems: [
+	{
+		xtype: 'toolbar',
+		dock: 'bottom',
+		items: [
+		{
+			text: 'Back',
+			handler: function() {
+				account.Page.setActiveItem(0);
+			}
+		}
+		]
+	}
+	]
+
 });
 
+account.Page = new Ext.Panel({
+			layout:"card",
+			activeItem:0,
+            // fullscreen: true,
+            cardSwitchAnimation: 'slide',
+			scroll: false,
+            items: [account.AccountList,account.DetailPanel]
+        });
 
-account.Page = new Ext.Container({
-	layout: {
-		type: 'hbox',
-		align: 'stretch'
-	},
-	items: [account.AccountList,account.DetailPanel]
-});
+// account.Page = new Ext.Container({
+// 	layout: {
+// 		type: 'hbox',
+// 		align: 'stretch'
+// 	},
+// 	items: [account.AccountList,account.DetailPanel]
+// });
