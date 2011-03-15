@@ -142,3 +142,9 @@ function account_sync_finished(){
 	account.AccountList.setLoading(false,true);
 	
 }
+
+
+function get_id_for_field(model,id,name) {
+	model = 'S' + model.toLowerCase();
+	return getPage('/app/' + model + '/id_for_field?id='+id+'&name='+name,true);
+}

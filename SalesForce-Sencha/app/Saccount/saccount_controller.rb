@@ -6,12 +6,14 @@ class SaccountController < Rho::RhoController
   include BrowserHelper
   
   def json
+    puts @params.inspect
     if @params['id'] && @params['id'] != ""
       @accounts = Saccount.find("{#{@params['id']}}")
       @accounts = [ @accounts ]
     else
       @accounts = Saccount.find(:all)
     end
+        
     temp = []
     if @accounts.length > 1
       @accounts.each do |account|
@@ -41,6 +43,17 @@ class SaccountController < Rho::RhoController
     all = { :accounts => temp }
     render :string => ::JSON.generate(all)
     
+  end
+
+  def id_for_field
+    account = Saccount.find("{#{@params['id']}}")
+    id = ""
+    puts account.inspect
+    if account
+      id = account.vars[@params["name"].to_sym]
+    end
+    puts id
+    render :string => ::JSON.generate(id)
   end
   
   def metafields

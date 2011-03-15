@@ -69,11 +69,17 @@ class Scontact < SourceAdapter
       elsif f["type"] == "id"
         type = 'sfsenchahidden'
       end      
+      
+      unless f["updateable"]
+        type = 'sfsenchareadonlytext'
+      end
+      
       field = {
         :label => f["label"],
         :name => "#{key}",
         :type => type,
-        :fieldtype => f["type"]
+        :fieldtype => f["type"],
+        :linkto => f["referenceTo"][0]
       }
       show << field
     end
@@ -131,7 +137,9 @@ class Scontact < SourceAdapter
     # TODO: Create a new record in your backend data source
     # If your rhodes rhom object contains image/binary data 
     # (has the image_uri attribute), then a blob will be provided
-
+    puts "CREATE!"
+    puts create_hash.inspect
+    ""
   end
  
   def update(update_hash)

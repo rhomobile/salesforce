@@ -4,8 +4,8 @@ index.MainTabs = {
     fullscreen: true,
     type: 'dark',
     sortable: true,
-	width: '100%',
-	height: '100%',
+	draggable: false,
+	cardSwitchAnimation: 'fade',
     items: [{
         title: 'Contacts',
         items: contact.Page,
@@ -14,8 +14,21 @@ index.MainTabs = {
         title: 'Accounts',
         items: account.Page,
 		layout: 'fit'
-    }]
+    }],
+	listeners: {
+		beforecardswitch : function ( this_obj, newCard, oldCard, index, animated ) {
+			if(global.navigating) {
+				global.navigating = false;
+			} else {
+				global.nav_stack.push({'model':newCard.items.items[0].model_name});
+				if(eval(newCard.items.items[0].model_name + ".Page.layout") != "card") {
+					eval( newCard.items.items[0].model_name + ".Page.setActiveItem(0,'fade');")
+				}
+			}
+		}
+	}
 };
+
 
 Ext.setup({
     tabletStartupScreen: 'tablet_startup.png',
@@ -29,7 +42,6 @@ Ext.setup({
 			account_sync_finished();
 			account.AccountList.setLoading(true,true);
 			contact.ContactList.setLoading(true,true);
-			//rho_sync();
 
         	index.Panel = new Ext.TabPanel(index.MainTabs);
 			tabbar = index.Panel.child('tabbar');
@@ -37,11 +49,13 @@ Ext.setup({
 			tabbar.add ({
 				text: 'Sync',
 				handler: function() {
-					account.AccountList.setLoading(true,true);
-					contact.ContactList.setLoading(true,true);
+					//account.AccountList.setLoading(true,true);
+					//contact.ContactList.setLoading(true,true);
 					rho_sync();
 				}
 			});
+
+			global.nav_stack.push({'model':'contact'});
 			tabbar.doLayout();
 		} else {
 			//login.LoginForm.fullscreen = true;
@@ -49,7 +63,7 @@ Ext.setup({
 				layout:"card",
 				activeItem:0,
 				fullscreen: true,
-				cardSwitchAnimation: 'slide',
+				cardSwitchAnimation: 'fade',
 				scroll: false,
 				items: [login.MainForm]
 			});

@@ -43,6 +43,17 @@ class ScontactController < Rho::RhoController
     
   end
   
+  def id_for_field
+    contact = Scontact.find("{#{@params['id']}}")
+    id = ""
+    puts contact.inspect
+    if contact
+      id = contact.vars[@params["name"].to_sym]
+    end
+    puts id
+    render :string => ::JSON.generate(id)
+  end
+  
   def metafields
     metadata = render_metadata('showfields')
     metadata = "[]" if metadata.nil? or metadata == ""
@@ -105,8 +116,12 @@ class ScontactController < Rho::RhoController
 
   # POST /Scontact/create
   def create
-    @scontact = Scontact.create(@params['scontact'])
-    redirect :action => :index
+    @params.reject! do |k,v|
+      k == "object"
+    end
+    puts @params.inspect
+    @scontact = Scontact.create(@params)
+    render :string => "0"
   end
 
   # POST /Scontact/{1}/update

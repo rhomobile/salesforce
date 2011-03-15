@@ -60,7 +60,7 @@ account.SingleStore = new Ext.data.JsonStore({
 			fn: function(store,array,success) {
 				account.DetailForm.user = store.data.items[0];
 				account.FormPanel.loadModel(account.DetailForm.user);
-				setTimeout('account.Page.setActiveItem(1);',50);
+				setTimeout("account.Page.setActiveItem(1,'fade');",50);
 			}
 		}
 	}
@@ -78,10 +78,11 @@ account.AccountList = new Ext.List({
     indexBar: true,
 	listeners: {
 		itemtap: function(view, index, item, e  ){ 
-//				account.DetailForm.user = view.store.data.items[index];
-//				account.FormPanel.loadModel(account.DetailForm.user);
 				account.FormPanel.doLayout();
 				item_id = view.store.data.items[index].data.id;
+				
+				global.nav_stack.push({'id':item_id, 'model':'account'});
+
 				account.SingleStore.proxy.url = '/app/Saccount/json?id=' + item_id;
 				account.SingleStore.load();
 		 }
@@ -144,7 +145,18 @@ account.DetailForm = {
         },
         exception : function(form, result){
             console.log('failure', Ext.toArray(arguments));
-        }
+        },
+		afterlayout : function() {
+			this.items.items[0].items.items.forEach(function(item){
+				if(item.link_to && item.link_to != "") {
+					if(item.value == "") {
+						item.setVisible(false);
+					} else {
+						item.setVisible(true);
+					}
+				}
+			});
+		}
     },
 
     
@@ -183,8 +195,7 @@ account.DetailPanel = new Ext.Panel({
 		{
 			text: 'Back',
 			handler: function() {
-				account.SingleStore.proxy.url = '/app/Saccount/json';
-				account.Page.setActiveItem(0);
+				go_back();
 			}
 		}
 		]
@@ -197,10 +208,14 @@ account.Page = new Ext.Panel({
 			layout:"card",
 			activeItem:0,
             // fullscreen: true,
-            cardSwitchAnimation: 'slide',
+			model_name:'account',
+
+            cardSwitchAnimation: 'fade',
 			scroll: false,
             items: [account.AccountList,account.DetailPanel]
         });
+
+account.Page.show();
 
 // account.Page = new Ext.Container({
 // 	layout: {

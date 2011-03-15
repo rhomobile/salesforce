@@ -18267,7 +18267,7 @@ Ext.gesture.Manager = new Ext.AbstractManager({
         gesture.addListener(eventName, listener);
         
         
-        if (this.startedChangedTouch && this.currentTargets.contains(target) && !gesture.started && !options.subsequent) {
+        if (this.startedChangedTouch && this.currentTargets.contains(target) && !gesture.started && !(options && options.subsequent)) {
             this.startGesture(gesture);
             if (gesture.listenForStart) {
                 gesture.onTouchStart(this.startEvent, this.startedTouches[0]);                

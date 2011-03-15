@@ -60,7 +60,7 @@ contact.SingleStore = new Ext.data.JsonStore({
 			fn: function(store,array,success) {
 				contact.DetailForm.user = store.data.items[0];
 				contact.FormPanel.loadModel(contact.DetailForm.user);
-				setTimeout('contact.Page.setActiveItem(1);',50);
+				setTimeout("contact.Page.setActiveItem(1,'fade');",50);
 			}
 		}
 	}
@@ -78,10 +78,18 @@ contact.ContactList = new Ext.List({
     indexBar: true,
 	listeners: {
 		itemtap: function(view, index, item, e  ){ 
-//				contact.DetailForm.user = view.store.data.items[index];
-//				contact.FormPanel.loadModel(contact.DetailForm.user);
+				contact.DetailForm.url = '/app/Scontact/update';
+				contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
 				contact.FormPanel.doLayout();
+				contact.DetailPanel.remove(contact.DetailPanel.items.items[0]);
+				contact.DetailPanel.insert(0,contact.FormPanel);
+				contact.DetailPanel.doLayout();
+				contact.FormPanel.doLayout();
+
 				item_id = view.store.data.items[index].data.id;
+				
+				global.nav_stack.push({'id':item_id, 'model':'contact'});
+
 				contact.SingleStore.proxy.url = '/app/Scontact/json?id=' + item_id;
 				contact.SingleStore.load();
 		 }
@@ -94,6 +102,42 @@ contact.ContactList = new Ext.List({
 	
 
 });
+
+contact.ListPanel = new Ext.Panel({
+	id: 'listpanel',
+	scroll: 'vertical',
+	items: [ contact.ContactList],
+	dockedItems: [
+	{
+		xtype: 'toolbar',
+		dock: 'bottom',
+		items: [
+		{
+			text: 'New',
+			handler: function() {
+				new_contact();
+			}
+		}
+		]
+	}
+	]
+	
+});
+
+function new_contact() {
+	global.nav_stack.push({'model':'contact'});
+	
+	contact.DetailForm.url = '/app/Scontact/create';
+	contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
+	contact.FormPanel.doLayout();
+	contact.FormPanel.reset();
+
+	contact.DetailPanel.remove(contact.DetailPanel.items.items[0]);
+	contact.DetailPanel.insert(0,contact.FormPanel);
+	contact.DetailPanel.doLayout();
+	
+	contact.Page.setActiveItem(1,'fade');
+}
 
 
 
@@ -144,7 +188,18 @@ contact.DetailForm = {
         },
         exception : function(form, result){
             console.log('failure', Ext.toArray(arguments));
-        }
+        },
+		afterlayout : function() {
+			this.items.items[0].items.items.forEach(function(item){
+				if(item.link_to && item.link_to != "") {
+					if(item.value == "") {
+						item.setVisible(false);
+					} else {
+						item.setVisible(true);
+					}
+				}
+			});
+		}
     },
 
     
@@ -183,8 +238,7 @@ contact.DetailPanel = new Ext.Panel({
 		{
 			text: 'Back',
 			handler: function() {
-				contact.SingleStore.proxy.url = '/app/Scontact/json';
-				contact.Page.setActiveItem(0);
+				go_back();
 			}
 		}
 		]
@@ -197,10 +251,13 @@ contact.Page = new Ext.Panel({
 			layout:"card",
 			activeItem:0,
             // fullscreen: true,
-            cardSwitchAnimation: 'slide',
+			model_name:'contact',
+            cardSwitchAnimation: 'fade',
 			scroll: false,
-            items: [contact.ContactList,contact.DetailPanel]
+            items: [contact.ListPanel,contact.DetailPanel]
         });
+
+contact.Page.show();
 
 // contact.Page = new Ext.Container({
 // 	layout: {
