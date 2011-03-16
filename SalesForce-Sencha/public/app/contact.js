@@ -79,6 +79,7 @@ contact.ContactList = new Ext.List({
 	listeners: {
 		itemtap: function(view, index, item, e  ){ 
 				contact.DetailForm.url = '/app/Scontact/update';
+				contact.DetailForm.items[0].title = "Contact Details";
 				contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
 				contact.FormPanel.doLayout();
 				contact.DetailPanel.remove(contact.DetailPanel.items.items[0]);
@@ -118,16 +119,18 @@ contact.ListPanel = new Ext.Panel({
 				new_contact();
 			}
 		}
+		
 		]
 	}
 	]
 	
 });
 
-function new_contact() {
+function new_contact(clone) {
 	global.nav_stack.push({'model':'contact'});
 	
 	contact.DetailForm.url = '/app/Scontact/create';
+	contact.DetailForm.items[0].title = "New contact";
 	contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
 	contact.FormPanel.doLayout();
 	contact.FormPanel.reset();
@@ -135,6 +138,11 @@ function new_contact() {
 	contact.DetailPanel.remove(contact.DetailPanel.items.items[0]);
 	contact.DetailPanel.insert(0,contact.FormPanel);
 	contact.DetailPanel.doLayout();
+	
+	if(clone) {
+		contact.DetailForm.user.data.object = "";
+		contact.FormPanel.loadModel(contact.DetailForm.user);
+	}
 	
 	contact.Page.setActiveItem(1,'fade');
 }
@@ -198,6 +206,9 @@ contact.DetailForm = {
 						item.setVisible(true);
 					}
 				}
+				if(item.name == "object") {
+					item.setVisible(false);
+				}
 			});
 		}
     },
@@ -239,6 +250,11 @@ contact.DetailPanel = new Ext.Panel({
 			text: 'Back',
 			handler: function() {
 				go_back();
+			}
+		},{
+			text: 'Clone',
+			handler: function() {
+				new_contact(true);
 			}
 		}
 		]
