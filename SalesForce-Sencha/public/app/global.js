@@ -13,10 +13,12 @@ tabs = { "contact":0, "account":1};
 function navigate() {
 	dest = global.nav_stack[global.nav_stack.length - 1];
 	model = dest['model'].toLowerCase();
-	global.navigating = true;
 
-	index.Panel.setActiveItem(tabs[model],'fade');
-
+	if(index.Panel.activeItem != tabs[model]) {
+		global.navigating = true;
+		index.Panel.setActiveItem(tabs[model],'fade');
+	}
+	
 	if(dest['id'] && dest['id'] != '') {
 		eval( model + ".FormPanel.doLayout();");
 		eval( model + ".Page.setActiveItem(1);");

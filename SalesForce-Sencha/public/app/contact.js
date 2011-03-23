@@ -60,7 +60,9 @@ contact.SingleStore = new Ext.data.JsonStore({
 			fn: function(store,array,success) {
 				contact.DetailForm.user = store.data.items[0];
 				contact.FormPanel.loadModel(contact.DetailForm.user);
-				setTimeout("contact.Page.setActiveItem(1,'fade');",50);
+				contact.FormPanel.doLayout();
+				contact.Page.show();
+				contact.Page.setActiveItem(1,'fade');
 			}
 		}
 	}
@@ -80,12 +82,11 @@ contact.ContactList = new Ext.List({
 		itemtap: function(view, index, item, e  ){ 
 				contact.DetailForm.url = '/app/Scontact/update';
 				contact.DetailForm.items[0].title = "Contact Details";
-				contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
 				contact.FormPanel.doLayout();
-				contact.DetailPanel.remove(contact.DetailPanel.items.items[0]);
+				contact.DetailPanel.remove('contactdetailform');
+				contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
 				contact.DetailPanel.insert(0,contact.FormPanel);
 				contact.DetailPanel.doLayout();
-				contact.FormPanel.doLayout();
 
 				item_id = view.store.data.items[index].data.id;
 				
@@ -105,7 +106,7 @@ contact.ContactList = new Ext.List({
 });
 
 contact.ListPanel = new Ext.Panel({
-	id: 'listpanel',
+	id: 'contactlistpanel',
 	scroll: 'vertical',
 	items: [ contact.ContactList],
 	dockedItems: [
@@ -135,7 +136,7 @@ function new_contact(clone) {
 	contact.FormPanel.doLayout();
 	contact.FormPanel.reset();
 
-	contact.DetailPanel.remove(contact.DetailPanel.items.items[0]);
+	contact.DetailPanel.remove('contactdetailform');
 	contact.DetailPanel.insert(0,contact.FormPanel);
 	contact.DetailPanel.doLayout();
 	
@@ -147,9 +148,17 @@ function new_contact(clone) {
 	contact.Page.setActiveItem(1,'fade');
 }
 
+function delete_contact() {
+	getPage('/app/Scontact/delete?id=' + contact.DetailForm.user.data.object,false);
+	contact.DataStore.load();
+	global.nav_stack.push({'model':'contact'});
+	navigate(); 
+}
+
 
 
 contact.DetailForm = {
+	id: 'contactdetailform',
     scroll: false,
     url   : '/app/Scontact/update',
     standardSubmit : false,
@@ -256,6 +265,11 @@ contact.DetailPanel = new Ext.Panel({
 			handler: function() {
 				new_contact(true);
 			}
+		},{
+			text: 'Delete',
+			handler: function() {
+				delete_contact();
+			}
 		}
 		]
 	}
@@ -275,10 +289,60 @@ contact.Page = new Ext.Panel({
 
 contact.Page.show();
 
-// contact.Page = new Ext.Container({
-// 	layout: {
-// 		type: 'hbox',
-// 		align: 'stretch'
-// 	},
-// 	items: [contact.ContactList,contact.DetailPanel]
-// });
+
+function contact_sync_finished(){
+	contactfields = getPage('/app/Scontact/model',true);
+	Ext.regModel('SingleContact', {
+		fields: contactfields
+	});
+
+
+	oldurl = contact.SingleStore.proxy.url;
+	
+	contact.SingleStore = new Ext.data.JsonStore({
+		autoDestroy: true,
+		storeId: 'singleContactStore',
+
+		model: 'SingleContact',
+		sorters: 'name',
+		getGroupString : function(record) {
+			return record.get('name')[0];
+		},
+		proxy: {
+			type: 'ajax',
+			url: oldurl,
+			reader: {
+				type: 'json',
+				root: 'contacts',
+				idProperty: 'id'
+			}
+		},
+		idProperty: 'id',
+		listeners: {
+			load: {
+				fn: function(store,array,success) {
+					contact.DetailForm.user = store.data.items[0];
+					contact.FormPanel.loadModel(contact.DetailForm.user);
+					contact.Page.show();
+					contact.Page.setActiveItem(1,'fade');
+				}
+			}
+		}
+	});	
+	
+	
+	
+	contact.DetailForm.items[0].items = getPage('/app/Scontact/metafields',true);
+
+	contact.DetailPanel.remove('contactdetailform');
+	contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
+
+	contact.DetailPanel.insert(0,contact.FormPanel);
+	contact.DetailPanel.doLayout();
+	
+	contact.DataStore.load();
+	//contact.SingleStore.load();
+
+	contact.ContactList.refresh(); 
+	contact.ContactList.setLoading(false,true);
+}

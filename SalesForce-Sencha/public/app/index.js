@@ -1,6 +1,7 @@
 Ext.ns('index', 'Ext.ux');
 
 index.MainTabs = {
+	activeItem: 0,
     fullscreen: true,
     type: 'dark',
     sortable: true,
@@ -17,6 +18,7 @@ index.MainTabs = {
     }],
 	listeners: {
 		beforecardswitch : function ( this_obj, newCard, oldCard, index, animated ) {
+			this_obj.activeItem = index;
 			if(global.navigating) {
 				global.navigating = false;
 			} else {
@@ -25,6 +27,7 @@ index.MainTabs = {
 					eval( newCard.items.items[0].model_name + ".Page.setActiveItem(0,'fade');")
 				}
 			}
+			return true;
 		}
 	}
 };
@@ -44,6 +47,7 @@ Ext.setup({
 			contact.ContactList.setLoading(true,true);
 
         	index.Panel = new Ext.TabPanel(index.MainTabs);
+			
 			tabbar = index.Panel.child('tabbar');
 			tabbar.add ({xtype: 'spacer'});
 			tabbar.add ({

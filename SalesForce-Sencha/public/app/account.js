@@ -60,7 +60,9 @@ account.SingleStore = new Ext.data.JsonStore({
 			fn: function(store,array,success) {
 				account.DetailForm.user = store.data.items[0];
 				account.FormPanel.loadModel(account.DetailForm.user);
-				setTimeout("account.Page.setActiveItem(1,'fade');",50);
+				account.FormPanel.doLayout();
+				account.Page.show();
+				account.Page.setActiveItem(1,'fade');
 			}
 		}
 	}
@@ -78,7 +80,14 @@ account.AccountList = new Ext.List({
     indexBar: true,
 	listeners: {
 		itemtap: function(view, index, item, e  ){ 
+				account.DetailForm.url = '/app/Saccount/update';
+				account.DetailForm.items[0].title = "Account Details";
 				account.FormPanel.doLayout();
+				account.DetailPanel.remove('accountdetailform');
+				account.FormPanel = new Ext.form.FormPanel(account.DetailForm);
+				account.DetailPanel.insert(0,account.FormPanel);
+				account.DetailPanel.doLayout();
+
 				item_id = view.store.data.items[index].data.id;
 				
 				global.nav_stack.push({'id':item_id, 'model':'account'});
@@ -96,9 +105,60 @@ account.AccountList = new Ext.List({
 
 });
 
+account.ListPanel = new Ext.Panel({
+	id: 'accountlistpanel',
+	scroll: 'vertical',
+	items: [ account.AccountList],
+	dockedItems: [
+	{
+		xtype: 'toolbar',
+		dock: 'bottom',
+		items: [
+		{
+			text: 'New',
+			handler: function() {
+				new_account();
+			}
+		}
+		
+		]
+	}
+	]
+	
+});
+
+function new_account(clone) {
+	global.nav_stack.push({'model':'account'});
+	
+	account.DetailForm.url = '/app/Saccount/create';
+	account.DetailForm.items[0].title = "New account";
+	account.FormPanel = new Ext.form.FormPanel(account.DetailForm);
+	account.FormPanel.doLayout();
+	account.FormPanel.reset();
+
+	account.DetailPanel.remove('accountdetailform');
+	account.DetailPanel.insert(0,account.FormPanel);
+	account.DetailPanel.doLayout();
+	
+	if(clone) {
+		account.DetailForm.user.data.object = "";
+		account.FormPanel.loadModel(account.DetailForm.user);
+	}
+	
+	account.Page.setActiveItem(1,'fade');
+}
+
+function delete_account() {
+	getPage('/app/Saccount/delete?id=' + account.DetailForm.user.data.object,false);
+	account.DataStore.load();
+	global.nav_stack.push({'model':'account'});
+	navigate(); 
+}
+
 
 
 account.DetailForm = {
+	id: 'accountdetailform',
     scroll: false,
     url   : '/app/Saccount/update',
     standardSubmit : false,
@@ -155,6 +215,9 @@ account.DetailForm = {
 						item.setVisible(true);
 					}
 				}
+				if(item.name == "object") {
+					item.setVisible(false);
+				}
 			});
 		}
     },
@@ -197,6 +260,16 @@ account.DetailPanel = new Ext.Panel({
 			handler: function() {
 				go_back();
 			}
+		},{
+			text: 'Clone',
+			handler: function() {
+				new_account(true);
+			}
+		},{
+			text: 'Delete',
+			handler: function() {
+				delete_account();
+			}
 		}
 		]
 	}
@@ -209,18 +282,67 @@ account.Page = new Ext.Panel({
 			activeItem:0,
             // fullscreen: true,
 			model_name:'account',
-
             cardSwitchAnimation: 'fade',
 			scroll: false,
-            items: [account.AccountList,account.DetailPanel]
+            items: [account.ListPanel,account.DetailPanel]
         });
 
 account.Page.show();
 
-// account.Page = new Ext.Container({
-// 	layout: {
-// 		type: 'hbox',
-// 		align: 'stretch'
-// 	},
-// 	items: [account.AccountList,account.DetailPanel]
-// });
+
+function account_sync_finished(){
+	accountfields = getPage('/app/Saccount/model',true);
+	Ext.regModel('SingleAccount', {
+		fields: accountfields
+	});
+
+
+	oldurl = account.SingleStore.proxy.url;
+	
+	account.SingleStore = new Ext.data.JsonStore({
+		autoDestroy: true,
+		storeId: 'singleAccountStore',
+
+		model: 'SingleAccount',
+		sorters: 'name',
+		getGroupString : function(record) {
+			return record.get('name')[0];
+		},
+		proxy: {
+			type: 'ajax',
+			url: oldurl,
+			reader: {
+				type: 'json',
+				root: 'accounts',
+				idProperty: 'id'
+			}
+		},
+		idProperty: 'id',
+		listeners: {
+			load: {
+				fn: function(store,array,success) {
+					account.DetailForm.user = store.data.items[0];
+					account.FormPanel.loadModel(account.DetailForm.user);
+					account.Page.show();
+					account.Page.setActiveItem(1,'fade');
+				}
+			}
+		}
+	});	
+	
+	
+	
+	account.DetailForm.items[0].items = getPage('/app/Saccount/metafields',true);
+
+	account.DetailPanel.remove('accountdetailform');
+	account.FormPanel = new Ext.form.FormPanel(account.DetailForm);
+
+	account.DetailPanel.insert(0,account.FormPanel);
+	account.DetailPanel.doLayout();
+	
+	account.DataStore.load();
+	//account.SingleStore.load();
+
+	account.AccountList.refresh(); 
+	account.AccountList.setLoading(false,true);
+}
