@@ -60,7 +60,7 @@ contact.SingleStore = new Ext.data.JsonStore({
 			fn: function(store,array,success) {
 				contact.DetailForm.user = store.data.items[0];
 				contact.FormPanel.loadModel(contact.DetailForm.user);
-				contact.FormPanel.doLayout();
+				contact.FormPanel.doComponentLayout();
 				contact.Page.show();
 				contact.Page.setActiveItem(1,'fade');
 			}

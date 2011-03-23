@@ -25,11 +25,15 @@ class ScontactController < Rho::RhoController
       @contacts.each do |contact|
         contact.vars.each do |k,v| 
           key = k.to_s.strip
-          if meta['datafields'][key] && meta['datafields'][key]["type"] == "reference"
-            begin
-              model = Object.const_get("S#{Scontact.metadata['datafields'][key]["referenceTo"][0].downcase}".to_sym)
-              contact.vars[k] = model.find(v).name
-            rescue Exception => e
+          if meta['datafields'][key] 
+            if meta['datafields'][key]["type"] == "reference"
+              begin
+                model = Object.const_get("S#{Scontact.metadata['datafields'][key]["referenceTo"][0].downcase}".to_sym)
+                contact.vars[k] = model.find(v).name
+              rescue Exception => e
+              end
+            elsif meta['datafields'][key]["type"] == "boolean"
+              contact.vars[k].downcase!
             end
           end
         end
@@ -39,7 +43,8 @@ class ScontactController < Rho::RhoController
 
 
     all = { :contacts => temp }
-    render :string => ::JSON.generate(all)
+    json_string = ::JSON.generate(all)
+    render :string => json_string
     
   end
   

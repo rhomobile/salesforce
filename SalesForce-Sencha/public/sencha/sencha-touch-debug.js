@@ -25722,7 +25722,7 @@ Ext.DatePicker = Ext.extend(Ext.Picker, {
     setValue: function(value, animated) {
         if (!Ext.isDate(value) && !Ext.isObject(value)) {
             value = null;
-        }
+        } 
 
         if (Ext.isDate(value)) {
             this.value = {
@@ -28540,8 +28540,14 @@ Ext.form.DatePicker = Ext.extend(Ext.form.Field, {
             this.value = (value != null) ? this.datePicker.getValue() : null;
         } else {
             if (!Ext.isDate(value) && !Ext.isObject(value)) {
-                value = null;
-            }
+				//RHO
+				if(value != "") {
+                	value = new Date(value);
+				} else {
+					value = null
+				}
+				//RHO
+            } 
 
             if (Ext.isObject(value)) {
                 this.value = new Date(value.year, value.month-1, value.day);

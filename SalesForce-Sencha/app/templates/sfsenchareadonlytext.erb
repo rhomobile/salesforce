@@ -5,17 +5,6 @@
 	name : '<%= @doc_def["name"].gsub(/'/,"\\'") %>',
   label: '<%= @doc_def["label"].gsub(/'/,"\\'") %>',
   link_to: '<%= @doc_def["linkto"] %>',
-	listeners: {
-		focus: function() {
-			if(this.value && this.value != "") {
-				current = global.nav_stack[global.nav_stack.length - 1];
-				obj_id = get_id_for_field(current['model'],current['id'],this.name);
-				global.nav_stack.push({'id':obj_id,'model':this.link_to});
-				navigate();
-			}
-			this.blur();
-		}
-	},
 	useClearIcon: false,
 	renderTpl: [
         '<tpl if="label">',

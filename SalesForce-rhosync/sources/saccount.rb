@@ -62,14 +62,16 @@ class Saccount < SourceAdapter
       data[key] = f
 
       field = {}
-      type = "sfsenchafield"
+      type = "sfsenchagenericfield"
+      xtype = "textfield"
       if f["type"] == "reference"
         type = 'sfsenchalinkfield'
         f["label"].gsub!(/ ID/,"")
       elsif f["type"] == "id"
-        type = 'sfsenchahidden'
+        xtype = 'hiddenfield'
       end      
       field = {
+        :xtype => xtype,
         :label => f["label"],
         :name => "#{key}",
         :type => type,

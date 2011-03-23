@@ -62,25 +62,50 @@ class Scontact < SourceAdapter
       data[key] = f
 
       field = {}
-      type = "sfsenchafield"
+      xtype = "textfield"
+      type = "sfsenchagenericfield"
+      selectoptions = []
+      
       if f["type"] == "reference"
         type = 'sfsenchalinkfield'
         f["label"].gsub!(/ ID/,"")
       elsif f["type"] == "id"
-        type = 'sfsenchahidden'
-      end      
+        xtype = 'hiddenfield'
+      elsif f["type"] == "picklist"
+        xtype = 'selectfield'
+        f["picklistValues"].each do |v|
+          option = {}
+          option[:text] = v["label"]
+          option[:value] = v["value"]
+          selectoptions << option
+        end
+      elsif f["type"] == "boolean"
+        #sencha toggle broken, textfield for now
+        xtype = 'textfield'
+      elsif f["type"] == "textarea"
+        xtype = 'textareafield'
+      elsif f["type"] == "email"
+        xtype = 'emailfield'
+      elsif f["type"] == "date"
+        xtype = 'datepickerfield'
+      end
+              
       
-      unless f["updateable"]
+      if not f["updateable"] and xtype == 'textfield'
         type = 'sfsenchareadonlytext'
       end
       
       field = {
+        :xtype => xtype,
         :label => f["label"],
         :name => "#{key}",
         :type => type,
         :fieldtype => f["type"],
         :linkto => f["referenceTo"][0]
       }
+      
+      field[:options] = selectoptions.to_json if xtype == 'selectfield'
+      
       show << field
     end
 
