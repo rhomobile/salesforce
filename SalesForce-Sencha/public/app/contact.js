@@ -151,6 +151,7 @@ function new_contact(clone) {
 function delete_contact() {
 	getPage('/app/Scontact/delete?id=' + contact.DetailForm.user.data.object,false);
 	contact.DataStore.load();
+	contact.ContactList.refresh(); 
 	global.nav_stack.push({'model':'contact'});
 	navigate(); 
 }
@@ -201,10 +202,18 @@ contact.DetailForm = {
     ],
     listeners : {
         submit : function(form, result){
-            console.log('success', Ext.toArray(arguments));
+			global.nav_stack.push({'model':'contact'});
+			navigate();
+			contact.DataStore.load();
+			contact.ContactList.refresh(); 
+			
         },
         exception : function(form, result){
-            console.log('failure', Ext.toArray(arguments));
+			global.nav_stack.push({'model':'contact'});
+			navigate();
+			contact.DataStore.load();
+			contact.ContactList.refresh(); 
+			
         },
 		afterlayout : function() {
 			this.items.items[0].items.items.forEach(function(item){
@@ -298,6 +307,7 @@ function contact_sync_finished(){
 
 
 	oldurl = contact.SingleStore.proxy.url;
+	olddata = contact.DetailForm.user;
 	
 	contact.SingleStore = new Ext.data.JsonStore({
 		autoDestroy: true,
@@ -336,6 +346,7 @@ function contact_sync_finished(){
 
 	contact.DetailPanel.remove('contactdetailform');
 	contact.FormPanel = new Ext.form.FormPanel(contact.DetailForm);
+	contact.FormPanel.loadModel(olddata);
 
 	contact.DetailPanel.insert(0,contact.FormPanel);
 	contact.DetailPanel.doLayout();
@@ -344,5 +355,5 @@ function contact_sync_finished(){
 	//contact.SingleStore.load();
 
 	contact.ContactList.refresh(); 
-	contact.ContactList.setLoading(false,true);
+	contact.ContactList.setLoading(false,false);
 }

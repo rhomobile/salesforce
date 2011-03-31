@@ -16,7 +16,9 @@ class ScontactController < Rho::RhoController
     if @contacts.length > 1
       @contacts.each do |contact|
         temp << { 
-                  :name => contact.name,
+                  #Model specific, using the 'name' attribute only updates after sync.
+                  #If they update the name, we want to see it immediately
+                  :name => contact.firstName + " " + contact.lastName,
                   :id => contact.object 
                 }
       end
@@ -126,6 +128,7 @@ class ScontactController < Rho::RhoController
     end
     puts @params.inspect
     @scontact = Scontact.create(@params)
+    Scontact.sync
     render :string => "0"
   end
 
@@ -138,7 +141,7 @@ class ScontactController < Rho::RhoController
     end
     
     @scontact.update_attributes(@params) if @scontact
-    SyncEngine.dosync
+    Scontact.sync
     
     render :string => "0"
   end
@@ -147,6 +150,7 @@ class ScontactController < Rho::RhoController
   def delete
     @scontact = Scontact.find(@params['id'])
     @scontact.destroy if @scontact
+    Scontact.sync
     redirect :action => :index
   end
 end

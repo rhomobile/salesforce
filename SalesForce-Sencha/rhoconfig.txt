@@ -22,7 +22,7 @@ MaxLogFileSize = 0
 # Sync server url. Typically this will look like 'http://<hostname>:<port>/application'
 # For example: 'http://localhost:9292/application'
 #syncserver = 'http://salesforce-rhosync.rhohub.com/application'
-syncserver = 'http://localhost:9292/application'
+syncserver = 'http://172.16.150.1:9292/application'
 
 # To disable auto sync, uncomment the following line.
 sync_poll_interval=0
