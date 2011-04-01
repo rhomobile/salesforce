@@ -47,14 +47,14 @@ class SettingsController < Rho::RhoController
     if @params['status'] == "complete"
       if $firstsync
         $firstsync = false
-        WebView.navigate Rho::RhoConfig.start_path
+        WebView.navigate "/app"
       end
     end
     
     if @params['status'] == "error"
       SyncEngine.stop_sync
       Rhom::Rhom.database_fullclient_reset_and_logout
-      WebView.navigate Rho::RhoConfig.start_path
+      WebView.navigate '/app'
     end
   end
 
@@ -96,10 +96,40 @@ class SettingsController < Rho::RhoController
     redirect :action => :index, :query => {:msg => @msg}
   end
   
-  #Sencha helpers
   def logged_in
     json = JSON.generate(SyncEngine.logged_in)
     render :string => json
+  end
+
+  def oauth
+    auth_url = 'https://login.salesforce.com/services/oauth2/authorize?response_type=code'
+    client_id = '3MVG9Km_cBLhsuPwdfTV2lWtYcL6T3SRVdPdz2LRPhWEAUC4WxKvhZTXWKrwvIKKLAiQyVvr5EPP4fm1J1kM1'
+    redirect_uri = "rhoforce%3A%2Fapp%2FSettings%2Foauth2"
+    
+    begin
+      System.open_url "#{auth_url}&client_id=#{client_id}&redirect_uri=#{redirect_uri}"
+    rescue Exception => e
+      puts "Error opening WebView to authorization URL: " + e.message
+    end
+    
+  end
+  
+  def oauth2
+    puts 'OAUTH2 FIRED'
+    if @params['code']
+      begin
+        puts "LOGIN"
+        SyncEngine.login("", @params['code'], (url_for :action => :login_callback) )
+      rescue Rho::RhoError => e
+        puts "LOGIN ERROR"
+        @msg = e.message
+        redirect :action => :oauth
+      end
+    else
+      @msg = "Error getting authorization token. Please try again."
+      redirect :action => :index, :query => {:msg => @msg}
+    end
+    redirect '/app'
   end
   
   

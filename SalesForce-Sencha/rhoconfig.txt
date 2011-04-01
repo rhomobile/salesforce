@@ -1,5 +1,5 @@
 # Startup page for your application
-start_path = '/app'
+start_path = '/app/Settings/oauth'
 
 # Path to the options page (in this case handled by javascript)
 options_path = '/app/Settings'
@@ -11,7 +11,7 @@ rhobundle_zip_url = ''
 rhobundle_zip_pwd = nil
 
 # Rhodes runtime properties
-MinSeverity  = 1
+MinSeverity  = 0
 LogToOutput = 1
 LogCategories = *
 ExcludeLogCategories =

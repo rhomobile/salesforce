@@ -14,10 +14,8 @@ class Saccount < SourceAdapter
     @sessionid = Store.get_value("#{current_user.login}:session")
     auth.sessionid =  @sessionid
     endpoint_url = Store.get_value("#{current_user.login}:endpoint_url")
-    @force = Soap.new(endpoint_url)
-    @force.headerhandler << auth
 
-    @resturl = endpoint_url.gsub(/services.*/,"services/data/v20.0")
+    @resturl = endpoint_url + "/services/data/v20.0"
     @restheaders = {
       "Accept" => "*/*", 
       "Authorization" => "OAuth #{@sessionid.split('!')[1]}", 

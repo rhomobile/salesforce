@@ -14,6 +14,6 @@ iphone:
   codesignidentity:
   entitlements:
   BundleIdentifier: com.rhomobile.SalesForce
-  BundleURLScheme: SalesForce
+  BundleURLScheme: rhoforce
 
 extensions: ["json", "rhodes_translator"]

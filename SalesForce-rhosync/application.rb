@@ -6,27 +6,41 @@ require 'sources/defaultDriver'
 class Application < Rhosync::Base
   class << self
     def authenticate(username,password,session)
-      success = false
       
-      endpoint_url = 'https://login.salesforce.com/services/Soap/c/20.0'
-
-      obj = Soap.new(endpoint_url)
-      login = Login.new(username,password)
-
+      puts "USER: #{username}, token: #{password}"
       begin
-        result = obj.login(login).result
-        puts result.inspect
-        Store.put_value("#{username}:metadata_url",result.serverUrl)
-        Store.put_value("#{username}:endpoint_url",result.serverUrl)
-        Store.put_value("#{username}:session",result.sessionId)
-        Store.put_value("#{username}:uid",result.userId)
+        requesturl = "https://login.salesforce.com/services/oauth2/token"
+        params = "code=" + password
+        params += "&grant_type=authorization_code"
+        params += "&client_id=" + Application.get_settings[:oauth_id]
+        params += "&client_secret=" + Application.get_settings[:oauth_secret].to_s
+        params += "&redirect_uri=" + "rhoforce%3A%2Fapp%2FSettings%2Foauth2"
+      
+        headers = {
+          "Accept" => "*/*", 
+          "X-PrettyPrint" => "1"
+        }
+
+        data = JSON.parse(RestClient.post(requesturl, params, headers))
+
+        headers["Authorization"] = "OAuth #{data["access_token"].split('!')[1]}" 
+
+        id_data = JSON.parse(RestClient.get(data["id"],headers))
         
-        success = true
+        username = id_data["username"] 
+        
+        Store.put_value("#{username}:endpoint_url",data["instance_url"])
+        Store.put_value("#{username}:refresh_token",data["refresh_token"])
+        Store.put_value("#{username}:session",data["access_token"])
+        Store.put_value("#{username}:uid",id_data["user_id"])
+        
+        success = username
       rescue Exception => e
-        puts "Login Error"
+        puts "LOGIN ERROR"
+        puts e.inspect
+        puts e.backtrace.join("\n")
         raise e
       end
-      
       success     
     end
     
@@ -34,6 +48,19 @@ class Application < Rhosync::Base
     # Don't forget to call super at the end!
     def initializer(path)
       super
+    end
+
+    def get_settings
+      return @settings if @settings
+      begin
+        file = YAML.load_file(File.join(ROOT_PATH,'settings','settings.yml'))
+        env = (ENV['RHO_ENV'] || :development).to_sym
+        @settings = file[env]
+      rescue Exception => e
+        puts "Error opening settings file: #{e}"
+        puts e.backtrace.join("\n")
+        raise e
+      end
     end
     
     # Calling super here returns rack tempfile path:
@@ -48,6 +75,8 @@ class Application < Rhosync::Base
       super #=> returns blob[:tempfile]
     end
   end
+  
+  
 end
 
 Application.initializer(ROOT_PATH)
