@@ -60,7 +60,7 @@ account.SingleStore = new Ext.data.JsonStore({
 			fn: function(store,array,success) {
 				account.DetailForm.user = store.data.items[0];
 				account.FormPanel.loadModel(account.DetailForm.user);
-				account.FormPanel.doLayout();
+				account.FormPanel.doComponentLayout();
 				account.Page.show();
 				account.Page.setActiveItem(1,'fade');
 			}
@@ -151,6 +151,7 @@ function new_account(clone) {
 function delete_account() {
 	getPage('/app/Saccount/delete?id=' + account.DetailForm.user.data.object,false);
 	account.DataStore.load();
+	account.AccountList.refresh(); 
 	global.nav_stack.push({'model':'account'});
 	navigate(); 
 }
@@ -201,10 +202,18 @@ account.DetailForm = {
     ],
     listeners : {
         submit : function(form, result){
-            console.log('success', Ext.toArray(arguments));
+			global.nav_stack.push({'model':'account'});
+			navigate();
+			account.DataStore.load();
+			account.AccountList.refresh(); 
+			
         },
         exception : function(form, result){
-            console.log('failure', Ext.toArray(arguments));
+			global.nav_stack.push({'model':'account'});
+			navigate();
+			account.DataStore.load();
+			account.AccountList.refresh(); 
+			
         },
 		afterlayout : function() {
 			this.items.items[0].items.items.forEach(function(item){
@@ -298,6 +307,7 @@ function account_sync_finished(){
 
 
 	oldurl = account.SingleStore.proxy.url;
+	olddata = account.DetailForm.user;
 	
 	account.SingleStore = new Ext.data.JsonStore({
 		autoDestroy: true,
@@ -336,6 +346,7 @@ function account_sync_finished(){
 
 	account.DetailPanel.remove('accountdetailform');
 	account.FormPanel = new Ext.form.FormPanel(account.DetailForm);
+	account.FormPanel.loadModel(olddata);
 
 	account.DetailPanel.insert(0,account.FormPanel);
 	account.DetailPanel.doLayout();
@@ -344,5 +355,5 @@ function account_sync_finished(){
 	//account.SingleStore.load();
 
 	account.AccountList.refresh(); 
-	account.AccountList.setLoading(false,true);
+	account.AccountList.setLoading(false,false);
 }

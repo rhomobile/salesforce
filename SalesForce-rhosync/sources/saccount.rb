@@ -9,7 +9,7 @@ class Saccount < SourceAdapter
   end
  
   def login
-
+    puts "LOGIN USER: #{current_user.login}"
     auth = ClientAuthHeaderHandler.new
     @sessionid = Store.get_value("#{current_user.login}:session")
     auth.sessionid =  @sessionid
@@ -60,21 +60,51 @@ class Saccount < SourceAdapter
       data[key] = f
 
       field = {}
-      type = "sfsenchagenericfield"
       xtype = "textfield"
+      type = "sfsenchagenericfield"
+      selectoptions = []
+      
       if f["type"] == "reference"
         type = 'sfsenchalinkfield'
         f["label"].gsub!(/ ID/,"")
       elsif f["type"] == "id"
         xtype = 'hiddenfield'
-      end      
+      elsif f["type"] == "picklist"
+        xtype = 'selectfield'
+        selectoptions << {:text => "", :value => ""}
+        f["picklistValues"].each do |v|
+          option = {}
+          option[:text] = v["label"]
+          option[:value] = v["value"]
+          selectoptions << option
+        end
+      elsif f["type"] == "boolean"
+        #sencha toggle broken, textfield for now
+        xtype = 'textfield'
+      elsif f["type"] == "textarea"
+        xtype = 'textareafield'
+      elsif f["type"] == "email"
+        xtype = 'emailfield'
+      elsif f["type"] == "date"
+        xtype = 'datepickerfield'
+      end
+              
+      
+      if not f["updateable"] and xtype == 'textfield'
+        type = 'sfsenchareadonlytext'
+      end
+      
       field = {
         :xtype => xtype,
         :label => f["label"],
         :name => "#{key}",
         :type => type,
-        :fieldtype => f["type"]
+        :fieldtype => f["type"],
+        :linkto => f["referenceTo"][0]
       }
+      
+      field[:options] = selectoptions.to_json if xtype == 'selectfield'
+      
       show << field
     end
 
@@ -128,31 +158,71 @@ class Saccount < SourceAdapter
   end
  
   def create(create_hash,blob=nil)
-    # TODO: Create a new record in your backend data source
-    # If your rhodes rhom object contains image/binary data 
-    # (has the image_uri attribute), then a blob will be provided
-
+    fhash = {}
+    @fields.each do |f|
+      fhash[f["name"].downcase] = f
+    end
+    
+    # Re-upcase the first character, and save to our submit_hash only if the field is marked creatable
+    submit_hash = {}
+    create_hash.each do |k,v|
+      nk = k.dup
+      nk[0] = k[0,1].upcase
+      submit_hash[nk] = v if fhash[k.downcase]["createable"] and v != "" and fhash[k.downcase]["type"] != "reference" and v != "Invalid Date"
+    end
+    
+    requesturl = "#{@resturl}/sobjects/Account/"
+    
+    begin
+      RestClient.post(requesturl, submit_hash.to_json, @postheaders)
+    rescue Exception => e
+      puts "POST ERROR"
+      puts e.inspect
+      puts e.backtrace.join("\n")
+    end
+    
+    ""
   end
  
   def update(update_hash)
-    # TODO: Update an existing record in your backend data source
-    account = Account.new
-    names = update_hash["name"].split(' ') if update_hash["name"]
+    # Make hash out of field array, so we can use name as an index
+    fhash = {}
+    @fields.each do |f|
+      fhash[f["name"].downcase] = f
+    end
+
+    # Re-upcase the first character, and save to our submit_hash only if the field is marked updateable
+    submit_hash = {}
+    update_hash.each do |k,v|
+      nk = k.dup
+      nk[0] = k[0,1].upcase
+      submit_hash[nk] = v if fhash[k.downcase]["updateable"] and v != "" and fhash[k.downcase]["type"] != "reference" and v != "Invalid Date"
+    end
+
+    update_id = update_hash['id']
+
+    requesturl = @resturl + "/sobjects/Account/#{update_id}?_HttpMethod=PATCH"
+
+    begin
+      RestClient.post(requesturl, submit_hash.to_json, @postheaders)
+    rescue Exception => e
+      puts "POST ERROR"
+      puts e.inspect
+      puts e.backtrace.join("\n")
+    end
     
-    account.id = update_hash["id"]
-    account.firstName = names[0] if update_hash["name"]
-    account.lastName = names[1] if update_hash["name"]
-    account.phone = update_hash["phone"]
-    account.email = update_hash["email"]
-    result = @force.update(Update.new([account]))
-    #puts result.inspect
- end
+  end
  
-  def delete(object_id)
-    # TODO: write some code here if applicable
-    # be sure to have a hash key and value for "object"
-    # for now, we'll say that its OK to not have a delete operation
-    # raise "Please provide some code to delete a single object in the backend application using the hash values in name_value_list"
+  def delete(delete_hash)
+    requesturl = @resturl + "/sobjects/Account/#{delete_hash["id"]}?_HttpMethod=DELETE"
+
+    begin
+      RestClient.post(requesturl, "", @postheaders)
+    rescue Exception => e
+      puts "POST ERROR"
+      puts e.inspect
+      puts e.backtrace.join("\n")
+    end
   end
  
   def logoff
