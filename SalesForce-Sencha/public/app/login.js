@@ -1,70 +1,23 @@
 Ext.ns('login', 'Ext.ux');
 
-
+login.LoginButton = new Ext.Button({
+    text: 'Login',
+	ui: 'confirm',
+	margin: '5 25 1 25',
+    iconMask: true,
+    handler: function() {
+        window.location = '/app/Settings/oauth';
+	}
+});
 login.LoginForm = {
 	scroll: 'vertical',
 	url   : '/app/Settings/do_login',
 	standardSubmit : false,
-	items: [
-	{
-		xtype: 'fieldset',
-		title: '',
-		instructions: 'Please enter your credentials.',
-		defaults: {
-			required: true,
-			labelAlign: 'left',
-			labelWidth: 100
-		},
-		items: [
-			{
-				xtype: 'textfield',
-				name : 'login',
-				label: 'Login',
-				useClearIcon: true,
-				autoCapitalize : false
-			}, {
-				xtype: 'passwordfield',
-				name : 'password',
-				label: 'Password',
-				useClearIcon: true,
-				autoCapitalize : false
-			}
-		]
-	}
-	],
-	listeners : {
-		submit : function(form, result){
-			console.log('success', Ext.toArray(arguments));
-		},
-		exception : function(form, result){
-			console.log('failure', Ext.toArray(arguments));
-		},	
-		beforesubmit : function(form, values, options) {
-			login.Page.setLoading(true,true);
-		}
-	},
-	dockedItems: [
-	{
-		xtype: 'toolbar',
-		dock: 'bottom',
-		items: [
-		{
-			text: 'Reset',
-			handler: function() {
-				login.MainForm.reset();
-			}
-		},
-		{
-			text: 'Login',
-			ui: 'confirm',
-			handler: function() {
-				login.MainForm.submit({
-					waitMsg : {message:'Submitting', cls : 'demos-loading'}
-				});
-			}
-		}
-		]
-	}
+	items: [{
+        cls: 'loading',
+        html: '<div><h1>Rhoforce</h1><p>Please make sure you are connected to the internet, and then select the login button to log in to your Salesforce account</p></div>'
+    }, 
+	login.LoginButton
 	]
 };
 

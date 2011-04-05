@@ -111,13 +111,14 @@ class SettingsController < Rho::RhoController
     rescue Exception => e
       puts "Error opening WebView to authorization URL: " + e.message
     end
-    
+    render :action => :oauth2
   end
   
   def oauth2
     puts 'OAUTH2 FIRED'
     if @params['code']
       begin
+        WebView.execute_js('login.MainForm.setLoading(true);')
         puts "LOGIN"
         SyncEngine.login("", @params['code'], (url_for :action => :login_callback) )
       rescue Rho::RhoError => e
@@ -129,7 +130,7 @@ class SettingsController < Rho::RhoController
       @msg = "Error getting authorization token. Please try again."
       redirect :action => :index, :query => {:msg => @msg}
     end
-    redirect '/app'
+    render
   end
   
   
