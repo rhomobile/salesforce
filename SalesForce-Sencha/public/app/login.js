@@ -12,10 +12,11 @@ login.LoginButton = new Ext.Button({
 login.LoginForm = {
 	scroll: 'vertical',
 	url   : '/app/Settings/do_login',
+	baseCls: 'loginForm',
 	standardSubmit : false,
 	items: [{
         cls: 'loading',
-        html: '<div><h1>Rhoforce</h1><p>Please make sure you are connected to the internet, and then select the login button to log in to your Salesforce account</p></div>'
+        html: '<div class="welcome"><header id="header"><p>Please make sure you are connected to the internet and then select the button below to log in</p></header></div><br/><br/>'
     }, 
 	login.LoginButton
 	]

@@ -103,11 +103,18 @@ class SettingsController < Rho::RhoController
 
   def oauth
     auth_url = 'https://login.salesforce.com/services/oauth2/authorize?response_type=code'
-    client_id = '3MVG9Km_cBLhsuPwdfTV2lWtYcL6T3SRVdPdz2LRPhWEAUC4WxKvhZTXWKrwvIKKLAiQyVvr5EPP4fm1J1kM1'
-    redirect_uri = "rhoforce%3A%2Fapp%2FSettings%2Foauth2"
-    
+    client_id = ''
+    redirect_url = ''
+    # if System::get_property('platform') == 'ANDROID'
+    #   client_id = '3MVG9Km_cBLhsuPwdfTV2lWtYcNWc2zuopxsTwKCq9srS7IFCiz.Gz_u9h4V6Qz0gXMxCeIsK_levyGi4cGHx'
+    #   redirect_uri = "intent:#Intent;component=com.rhomobile.salesforce/com.rhomobile.rhodes.RhodesActivity;S.RhoUrlStart=%2Fapp%2FSettings%2Foauth2;end"
+    # else
+      client_id = '3MVG9Km_cBLhsuPwdfTV2lWtYcL6T3SRVdPdz2LRPhWEAUC4WxKvhZTXWKrwvIKKLAiQyVvr5EPP4fm1J1kM1'
+      redirect_uri = "rhoforce:/app/Settings/oauth2"
+    # end
+  
     begin
-      System.open_url "#{auth_url}&client_id=#{client_id}&redirect_uri=#{redirect_uri}"
+      System.open_url "#{auth_url}&client_id=#{client_id}&redirect_uri=#{Rho::RhoSupport.url_encode(redirect_uri)}"
     rescue Exception => e
       puts "Error opening WebView to authorization URL: " + e.message
     end
@@ -120,7 +127,7 @@ class SettingsController < Rho::RhoController
       begin
         WebView.execute_js('login.MainForm.setLoading(true);')
         puts "LOGIN"
-        SyncEngine.login("", @params['code'], (url_for :action => :login_callback) )
+        SyncEngine.login(System::get_property('platform'), @params['code'], (url_for :action => :login_callback) )
       rescue Rho::RhoError => e
         puts "LOGIN ERROR"
         @msg = e.message

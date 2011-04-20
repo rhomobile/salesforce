@@ -11,7 +11,7 @@ rhobundle_zip_url = ''
 rhobundle_zip_pwd = nil
 
 # Rhodes runtime properties
-MinSeverity  = 0
+MinSeverity  = 1
 LogToOutput = 1
 LogCategories = *
 ExcludeLogCategories =
@@ -21,8 +21,8 @@ MaxLogFileSize = 0
 
 # Sync server url. Typically this will look like 'http://<hostname>:<port>/application'
 # For example: 'http://localhost:9292/application'
-#syncserver = 'http://salesforce-rhosync.rhohub.com/application'
-syncserver = 'http://172.16.150.1:9292/application'
+syncserver = 'http://salesforce-rhosync.rhohub.com/application'
+#syncserver = 'http://172.16.150.1:9292/application'
 
 # To disable auto sync, uncomment the following line.
 sync_poll_interval=0

@@ -15,5 +15,7 @@ iphone:
   entitlements:
   BundleIdentifier: com.rhomobile.SalesForce
   BundleURLScheme: rhoforce
-
-extensions: ["json", "rhodes_translator"]
+android:
+  BundleURLScheme: rhoforce
+    
+extensions: ["json", "rhodes_translator", "rhoxml"]

@@ -65,6 +65,7 @@ Ext.setup({
 			//login.LoginForm.fullscreen = true;
 			login.Page = new Ext.Panel({
 				layout:"card",
+				cls:'loginPage',
 				activeItem:0,
 				fullscreen: true,
 				cardSwitchAnimation: 'fade',
