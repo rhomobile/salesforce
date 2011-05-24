@@ -59,6 +59,8 @@ Ext.form.Select = Ext.extend(Ext.form.Text, {
 
     // @cfg {Boolean} useMask @hide
     useMask: true,
+
+    monitorOrientation: true,
     
     // @private
     initComponent: function() {
@@ -153,6 +155,13 @@ Ext.form.Select = Ext.extend(Ext.form.Text, {
         }
 
         return this.listPanel;
+    },
+
+    // @private
+    onOrientationChange: function() {
+        if (this.listPanel && !this.listPanel.hidden && !Ext.is.Phone) {
+            this.listPanel.showBy(this.el, false, false);
+        }
     },
 
     // @private

@@ -179,6 +179,14 @@ Ext.data.Reader = Ext.extend(Object, {
      * object. See the Ext.data.Reader intro docs for full explanation. Defaults to true.
      */
     implicitIncludes: true,
+    
+    // Private. Empty ResultSet to return when response is falsy (null|undefined|empty string)
+    nullResultSet: new Ext.data.ResultSet({
+        total  : 0,
+        count  : 0,
+        records: [],
+        success: true
+    }),
 
     constructor: function(config) {
         Ext.apply(this, config || {});
@@ -212,12 +220,16 @@ Ext.data.Reader = Ext.extend(Object, {
      */
     read: function(response) {
         var data = response;
-
-        if (response.responseText) {
+        
+        if (response && response.responseText) {
             data = this.getResponseData(response);
         }
-
-        return this.readRecords(data);
+        
+        if (data) {
+            return this.readRecords(data);
+        } else {
+            return this.nullResultSet;
+        }
     },
 
     /**

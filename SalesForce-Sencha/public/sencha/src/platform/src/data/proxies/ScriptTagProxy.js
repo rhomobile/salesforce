@@ -369,7 +369,7 @@ Ext.data.ScriptTagProxy = Ext.extend(Ext.data.ServerProxy, {
             url = Ext.urlAppend(url, Ext.urlEncode(params));
         }
         
-        if (filters.length) {
+        if (filters && filters.length) {
             for (i = 0; i < filters.length; i++) {
                 filter = filters[i];
                 

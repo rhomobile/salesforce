@@ -1,5 +1,6 @@
 /**
  * @class Ext.ComponentMgr
+ * @extends Ext.AbstractManager
  * <p>Provides a registry of all Components (instances of {@link Ext.Component} or any subclass
  * thereof) on a page so that they can be easily accessed by {@link Ext.Component component}
  * {@link Ext.Component#id id} (see {@link #get}, or the convenience method {@link Ext#getCmp Ext.getCmp}).</p>
@@ -532,6 +533,7 @@ Ext.ComponentQuery = new function() {
 };
 /**
  * @class Ext.PluginMgr
+ * @extends Ext.AbstractManager
  * <p>Provides a registry of available Plugin <i>classes</i> indexed by a mnemonic code known as the Plugin's ptype.
  * The <code>{@link Ext.Component#xtype xtype}</code> provides a way to avoid instantiating child Components
  * when creating a full, nested config object for a complete Ext page.</p>
@@ -1199,14 +1201,16 @@ Ext.EventObject = new Ext.EventObjectImpl();
  * @singleton
  */
 Ext.is = {
-    init : function() {
+    init : function(navigator) {
         var platforms = this.platforms,
             ln = platforms.length,
             i, platform;
 
+        navigator = navigator || window.navigator;
+
         for (i = 0; i < ln; i++) {
             platform = platforms[i];
-            this[platform.identity] = platform.regex.test(platform.string);
+            this[platform.identity] = platform.regex.test(navigator[platform.property]);
         }
 
         /**
@@ -1241,7 +1245,7 @@ Ext.is = {
      * @type {Boolean}
      */
     platforms: [{
-        string: navigator.platform,
+        property: 'platform',
         regex: /iPhone/i,
         identity: 'iPhone'
     },
@@ -1251,7 +1255,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.platform,
+        property: 'platform',
         regex: /iPod/i,
         identity: 'iPod'
     },
@@ -1261,7 +1265,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.userAgent,
+        property: 'userAgent',
         regex: /iPad/i,
         identity: 'iPad'
     },
@@ -1271,7 +1275,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.userAgent,
+        property: 'userAgent',
         regex: /Blackberry/i,
         identity: 'Blackberry'
     },
@@ -1281,7 +1285,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.userAgent,
+        property: 'userAgent',
         regex: /Android/i,
         identity: 'Android'
     },
@@ -1291,7 +1295,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.platform,
+        property: 'platform',
         regex: /Mac/i,
         identity: 'Mac'
     },
@@ -1301,7 +1305,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.platform,
+        property: 'platform',
         regex: /Win/i,
         identity: 'Windows'
     },
@@ -1311,7 +1315,7 @@ Ext.is = {
      * @type {Boolean}
      */
     {
-        string: navigator.platform,
+        property: 'platform',
         regex: /Linux/i,
         identity: 'Linux'
     }]
@@ -1356,13 +1360,13 @@ Ext.supports = {
      * @type {Boolean}
      */
     OrientationChange: ((typeof window.orientation != 'undefined') && ('onorientationchange' in window)),
-
+    
     /**
      * @property DeviceMotion True if the device supports device motion (acceleration and rotation rate)
      * @type {Boolean}
      */
     DeviceMotion: ('ondevicemotion' in window),
-
+    
     /**
      * @property Touch True if the device supports touch
      * @type {Boolean}
@@ -1529,6 +1533,27 @@ Ext.supports = {
                 div.style.cssText = options.join(';');
                 
                 return ("" + div.style.backgroundImage).indexOf('gradient') !== -1;
+            }
+        },
+        
+        /**
+         * @property CSS3BorderRadius True if the device supports CSS3 border radius
+         * @type {Boolean}
+         */
+        {
+            identity: 'CSS3BorderRadius',
+            fn: function(doc, div) {
+                var domPrefixes = ['borderRadius', 'BorderRadius', 'MozBorderRadius', 'WebkitBorderRadius', 'OBorderRadius', 'KhtmlBorderRadius'],
+                    pass = false,
+                    i;
+                
+                for (i = 0; i < domPrefixes.length; i++) {
+                    if (document.body.style[domPrefixes[i]] !== undefined) {
+                        return pass = true;
+                    }
+                }
+                
+                return pass;
             }
         },
         

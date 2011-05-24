@@ -244,10 +244,10 @@ Ext.data.XmlReader = Ext.extend(Ext.data.Reader, {
         var nodeName = data.nodeName,
             root     = this.root;
         
-        if (nodeName && nodeName == root) {
+        if (!root || (nodeName && nodeName == root)) {
             return data;
         } else {
-            return Ext.DomQuery.select(root, data);
+            return Ext.DomQuery.selectNode(root, data);
         }
     },
 
@@ -278,16 +278,9 @@ Ext.data.XmlReader = Ext.extend(Ext.data.Reader, {
         // backwards compat, convert idPath or id / success
         // DEPRECATED - remove this in 5.0
 
-        /*
-         * Want to leave record in here. Makes sense to have it, since "root" doesn't really match
-         * When describing the XmlReader. Internally we can apply it as root, however for the public
-         * API it makes more sense for it to be called record. Especially since in the writer, we will
-         * need both root AND record.
-         */
         Ext.applyIf(config, {
             idProperty     : config.idPath || config.id,
-            successProperty: config.success,
-            root           : config.record
+            successProperty: config.success
         });
         
         Ext.data.XmlReader.superclass.constructor.call(this, config);

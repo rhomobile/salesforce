@@ -1,7 +1,7 @@
 /**
  * @class Ext.util.HashMap
  * @extends Ext.util.Observable
- * A simple unoredered dictionary implementation to store key/value pairs.
+ * <p>A simple unordered dictionary implementation to store key/value pairs.</p>
  * 
  * @cfg {Function} keyFn A function that is used to retrieve a default key for a passed object.
  * A default is provided that returns the <b>id</b> property on the object. This function is only used
@@ -45,7 +45,9 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
              */
             'replace'
         );
+        
         Ext.util.HashMap.superclass.constructor.call(this, config);
+        
         this.clear(true);
     },
 
@@ -65,13 +67,14 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
      * @param {Object} value The value
      * @return {Array} [key, value]
      */
-    getData: function(key, value){
+    getData: function(key, value) {
         // if we have no value, it means we need to get the key from the object
         if (value === undefined) {
             value = key;
             key = this.getKey(value);
         }
-        return [key, value]
+        
+        return [key, value];
     },
     
     /**
@@ -80,7 +83,7 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
      * @param {Object} o The object to get the key from
      * @return {String} The key to use.
      */
-    getKey: function(o){
+    getKey: function(o) {
         return o.id;    
     },
 
@@ -95,8 +98,9 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
             data;
             
         if (me.containsKey(key)) {
-            throw 'This key already exists in the HashMap';
+            throw new Error('This key already exists in the HashMap');
         }
+        
         data = this.getData(key, value);
         key = data[0];
         value = data[1];

@@ -1,5 +1,6 @@
 /**
  * @class Ext.ComponentMgr
+ * @extends Ext.AbstractManager
  * <p>Provides a registry of all Components (instances of {@link Ext.Component} or any subclass
  * thereof) on a page so that they can be easily accessed by {@link Ext.Component component}
  * {@link Ext.Component#id id} (see {@link #get}, or the convenience method {@link Ext#getCmp Ext.getCmp}).</p>

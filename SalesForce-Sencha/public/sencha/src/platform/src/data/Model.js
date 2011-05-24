@@ -229,20 +229,12 @@ Ext.data.Model = Ext.extend(Ext.util.Stateful, {
     phantom : false,
     
     /**
-     * The name of the field treated as this Model's unique id (defaults to 'id').
-     * @property idProperty
-     * @type String
+     * @cfg {String} idProperty The name of the field treated as this Model's unique id (defaults to 'id').
      */
     idProperty: 'id',
     
     constructor: function(data, id) {
         data = data || {};
-        
-        if (this.evented) {
-            this.addEvents(
-                
-            );
-        }
         
         /**
          * An internal unique ID for each Model instance, used to identify Models that don't have an ID yet

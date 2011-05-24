@@ -16,6 +16,8 @@ Ext.ApplicationManager = new Ext.AbstractManager({
         
         this.all.add(application);
         
+        this.currentApplication = application;
+        
         return application;
     }
 });

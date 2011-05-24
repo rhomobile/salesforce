@@ -62,7 +62,6 @@ Ext.setup({
 			global.nav_stack.push({'model':'contact'});
 			tabbar.doLayout();
 		} else {
-			//login.LoginForm.fullscreen = true;
 			login.Page = new Ext.Panel({
 				layout:"card",
 				cls:'loginPage',
@@ -70,9 +69,8 @@ Ext.setup({
 				fullscreen: true,
 				cardSwitchAnimation: 'fade',
 				scroll: false,
-				items: [login.MainForm]
+				items: [new login.MainForm()]
 			});
-	        login.Page.show();
 		}
     }
 });

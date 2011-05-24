@@ -1,5 +1,6 @@
 /**
  * @class Ext.PluginMgr
+ * @extends Ext.AbstractManager
  * <p>Provides a registry of available Plugin <i>classes</i> indexed by a mnemonic code known as the Plugin's ptype.
  * The <code>{@link Ext.Component#xtype xtype}</code> provides a way to avoid instantiating child Components
  * when creating a full, nested config object for a complete Ext page.</p>

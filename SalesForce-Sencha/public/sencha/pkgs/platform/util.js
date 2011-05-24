@@ -56,7 +56,7 @@ Ext.apply(Ext, {
     platformVersionDetail: {
         major: 1,
         minor: 0,
-        patch: 0
+        patch: 3
     },
     userAgent: navigator.userAgent.toLowerCase(),
     cache: {},
@@ -1760,7 +1760,7 @@ Ext.data.Model.id(rec); // automatically generate a unique sequential id
 /**
  * @class Ext.util.HashMap
  * @extends Ext.util.Observable
- * A simple unoredered dictionary implementation to store key/value pairs.
+ * <p>A simple unordered dictionary implementation to store key/value pairs.</p>
  * 
  * @cfg {Function} keyFn A function that is used to retrieve a default key for a passed object.
  * A default is provided that returns the <b>id</b> property on the object. This function is only used
@@ -1804,7 +1804,9 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
              */
             'replace'
         );
+        
         Ext.util.HashMap.superclass.constructor.call(this, config);
+        
         this.clear(true);
     },
 
@@ -1824,13 +1826,14 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
      * @param {Object} value The value
      * @return {Array} [key, value]
      */
-    getData: function(key, value){
+    getData: function(key, value) {
         // if we have no value, it means we need to get the key from the object
         if (value === undefined) {
             value = key;
             key = this.getKey(value);
         }
-        return [key, value]
+        
+        return [key, value];
     },
     
     /**
@@ -1839,7 +1842,7 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
      * @param {Object} o The object to get the key from
      * @return {String} The key to use.
      */
-    getKey: function(o){
+    getKey: function(o) {
         return o.id;    
     },
 
@@ -1854,8 +1857,9 @@ Ext.util.HashMap = Ext.extend(Ext.util.Observable, {
             data;
             
         if (me.containsKey(key)) {
-            throw 'This key already exists in the HashMap';
+            throw new Error('This key already exists in the HashMap');
         }
+        
         data = this.getData(key, value);
         key = data[0];
         value = data[1];
@@ -3525,164 +3529,6 @@ geo.updateLocation(function (geo) {
     }
 });
 /**
- * @class Ext.util.Point
- * @extends Object
- *
- * Represents a 2D point with x and y properties, useful for comparison and instantiation
- * from an event:
- * <pre><code>
- * var point = Ext.util.Point.fromEvent(e);
- * </code></pre>
- */
-
-Ext.util.Point = Ext.extend(Object, {
-    constructor: function(x, y) {
-        this.x = (x != null && !isNaN(x)) ? x : 0;
-        this.y = (y != null && !isNaN(y)) ? y : 0;
-
-        return this;
-    },
-
-    /**
-     * Copy a new instance of this point
-     * @return {Ext.util.Point} the new point
-     */
-    copy: function() {
-        return new Ext.util.Point(this.x, this.y);
-    },
-
-    /**
-     * Copy the x and y values of another point / object to this point itself
-     * @param {}
-     * @return {Ext.util.Point} this This point
-     */
-    copyFrom: function(p) {
-        this.x = p.x;
-        this.y = p.y;
-
-        return this;
-    },
-
-    /**
-     * Returns a human-eye-friendly string that represents this point,
-     * useful for debugging
-     * @return {String}
-     */
-    toString: function() {
-        return "Point[" + this.x + "," + this.y + "]";
-    },
-
-    /**
-     * Compare this point and another point
-     * @param {Ext.util.Point/Object} The point to compare with, either an instance
-     * of Ext.util.Point or an object with x and y properties
-     * @return {Boolean} Returns whether they are equivalent
-     */
-    equals: function(p) {
-        return (this.x == p.x && this.y == p.y);
-    },
-
-    /**
-     * Whether the given point is not away from this point within the given threshold amount
-     * @param {Ext.util.Point/Object} The point to check with, either an instance
-     * of Ext.util.Point or an object with x and y properties
-     * @param {Object/Number} threshold Can be either an object with x and y properties or a number
-     * @return {Boolean}
-     */
-    isWithin: function(p, threshold) {
-        if (!Ext.isObject(threshold)) {
-            threshold = {x: threshold};
-            threshold.y = threshold.x;
-        }
-
-        return (this.x <= p.x + threshold.x && this.x >= p.x - threshold.x &&
-                this.y <= p.y + threshold.y && this.y >= p.y - threshold.y);
-    },
-
-    /**
-     * Translate this point by the given amounts
-     * @param {Number} x Amount to translate in the x-axis
-     * @param {Number} y Amount to translate in the y-axis
-     * @return {Boolean}
-     */
-    translate: function(x, y) {
-        if (x != null && !isNaN(x))
-            this.x += x;
-
-        if (y != null && !isNaN(y))
-            this.y += y;
-    },
-
-    /**
-     * Compare this point with another point when the x and y values of both points are rounded. E.g:
-     * [100.3,199.8] will equals to [100, 200]
-     * @param {Ext.util.Point/Object} The point to compare with, either an instance
-     * of Ext.util.Point or an object with x and y properties
-     * @return {Boolean}
-     */
-    roundedEquals: function(p) {
-        return (Math.round(this.x) == Math.round(p.x) && Math.round(this.y) == Math.round(p.y));
-    }
-});
-
-/**
- * Returns a new instance of Ext.util.Point base on the pageX / pageY values of the given event
- * @static
- * @param {Event} e The event
- * @returns Ext.util.Point
- */
-Ext.util.Point.fromEvent = function(e) {
-    var a = (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
-    return new Ext.util.Point(a.pageX, a.pageY);
-};
-Ext.util.Offset = Ext.extend(Object, {
-    constructor: function(x, y) {
-        this.x = (x != null && !isNaN(x)) ? x : 0;
-        this.y = (y != null && !isNaN(y)) ? y : 0;
-
-        return this;
-    },
-
-    copy: function() {
-        return new Ext.util.Offset(this.x, this.y);
-    },
-
-    copyFrom: function(p) {
-        this.x = p.x;
-        this.y = p.y;
-    },
-
-    toString: function() {
-        return "Offset[" + this.x + "," + this.y + "]";
-    },
-
-    equals: function(offset) {
-        if(!(offset instanceof Ext.util.Offset))
-            throw new Error('offset must be an instance of Ext.util.Offset');
-
-        return (this.x == offset.x && this.y == offset.y);
-    },
-
-    round: function(to) {
-        if (!isNaN(to)) {
-            var factor = Math.pow(10, to);
-            this.x = Math.round(this.x * factor) / factor;
-            this.y = Math.round(this.y * factor) / factor;
-        } else {
-            this.x = Math.round(this.x);
-            this.y = Math.round(this.y);
-        }
-    },
-
-    isZero: function() {
-        return this.x == 0 && this.y == 0;
-    }
-});
-
-Ext.util.Offset.fromObject = function(obj) {
-    return new Ext.util.Offset(obj.x, obj.y);
-};
-/**
  * @class Ext.util.Region
  * @extends Object
  *
@@ -4032,6 +3878,164 @@ Ext.util.Region.getRegion = function(el) {
  */
 Ext.util.Region.from = function(o) {
     return new Ext.util.Region(o.top, o.right, o.bottom, o.left);
+};
+/**
+ * @class Ext.util.Point
+ * @extends Object
+ *
+ * Represents a 2D point with x and y properties, useful for comparison and instantiation
+ * from an event:
+ * <pre><code>
+ * var point = Ext.util.Point.fromEvent(e);
+ * </code></pre>
+ */
+
+Ext.util.Point = Ext.extend(Object, {
+    constructor: function(x, y) {
+        this.x = (x != null && !isNaN(x)) ? x : 0;
+        this.y = (y != null && !isNaN(y)) ? y : 0;
+
+        return this;
+    },
+
+    /**
+     * Copy a new instance of this point
+     * @return {Ext.util.Point} the new point
+     */
+    copy: function() {
+        return new Ext.util.Point(this.x, this.y);
+    },
+
+    /**
+     * Copy the x and y values of another point / object to this point itself
+     * @param {}
+     * @return {Ext.util.Point} this This point
+     */
+    copyFrom: function(p) {
+        this.x = p.x;
+        this.y = p.y;
+
+        return this;
+    },
+
+    /**
+     * Returns a human-eye-friendly string that represents this point,
+     * useful for debugging
+     * @return {String}
+     */
+    toString: function() {
+        return "Point[" + this.x + "," + this.y + "]";
+    },
+
+    /**
+     * Compare this point and another point
+     * @param {Ext.util.Point/Object} The point to compare with, either an instance
+     * of Ext.util.Point or an object with x and y properties
+     * @return {Boolean} Returns whether they are equivalent
+     */
+    equals: function(p) {
+        return (this.x == p.x && this.y == p.y);
+    },
+
+    /**
+     * Whether the given point is not away from this point within the given threshold amount
+     * @param {Ext.util.Point/Object} The point to check with, either an instance
+     * of Ext.util.Point or an object with x and y properties
+     * @param {Object/Number} threshold Can be either an object with x and y properties or a number
+     * @return {Boolean}
+     */
+    isWithin: function(p, threshold) {
+        if (!Ext.isObject(threshold)) {
+            threshold = {x: threshold};
+            threshold.y = threshold.x;
+        }
+
+        return (this.x <= p.x + threshold.x && this.x >= p.x - threshold.x &&
+                this.y <= p.y + threshold.y && this.y >= p.y - threshold.y);
+    },
+
+    /**
+     * Translate this point by the given amounts
+     * @param {Number} x Amount to translate in the x-axis
+     * @param {Number} y Amount to translate in the y-axis
+     * @return {Boolean}
+     */
+    translate: function(x, y) {
+        if (x != null && !isNaN(x))
+            this.x += x;
+
+        if (y != null && !isNaN(y))
+            this.y += y;
+    },
+
+    /**
+     * Compare this point with another point when the x and y values of both points are rounded. E.g:
+     * [100.3,199.8] will equals to [100, 200]
+     * @param {Ext.util.Point/Object} The point to compare with, either an instance
+     * of Ext.util.Point or an object with x and y properties
+     * @return {Boolean}
+     */
+    roundedEquals: function(p) {
+        return (Math.round(this.x) == Math.round(p.x) && Math.round(this.y) == Math.round(p.y));
+    }
+});
+
+/**
+ * Returns a new instance of Ext.util.Point base on the pageX / pageY values of the given event
+ * @static
+ * @param {Event} e The event
+ * @returns Ext.util.Point
+ */
+Ext.util.Point.fromEvent = function(e) {
+    var a = (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
+    return new Ext.util.Point(a.pageX, a.pageY);
+};
+Ext.util.Offset = Ext.extend(Object, {
+    constructor: function(x, y) {
+        this.x = (x != null && !isNaN(x)) ? x : 0;
+        this.y = (y != null && !isNaN(y)) ? y : 0;
+
+        return this;
+    },
+
+    copy: function() {
+        return new Ext.util.Offset(this.x, this.y);
+    },
+
+    copyFrom: function(p) {
+        this.x = p.x;
+        this.y = p.y;
+    },
+
+    toString: function() {
+        return "Offset[" + this.x + "," + this.y + "]";
+    },
+
+    equals: function(offset) {
+        if(!(offset instanceof Ext.util.Offset))
+            throw new Error('offset must be an instance of Ext.util.Offset');
+
+        return (this.x == offset.x && this.y == offset.y);
+    },
+
+    round: function(to) {
+        if (!isNaN(to)) {
+            var factor = Math.pow(10, to);
+            this.x = Math.round(this.x * factor) / factor;
+            this.y = Math.round(this.y * factor) / factor;
+        } else {
+            this.x = Math.round(this.x);
+            this.y = Math.round(this.y);
+        }
+    },
+
+    isZero: function() {
+        return this.x == 0 && this.y == 0;
+    }
+});
+
+Ext.util.Offset.fromObject = function(obj) {
+    return new Ext.util.Offset(obj.x, obj.y);
 };
 /**
  * @class Ext.Template
@@ -5490,7 +5494,7 @@ Ext.LoadMask = Ext.extend(Ext.util.Observable, {
      * Optional Store to which the mask is bound. The mask is displayed when a load request is issued, and
      * hidden on either load sucess, or load fail.
      */
-     
+
     /**
      * @cfg {String} msg
      * The text to display in a centered loading message box (defaults to 'Loading...')
@@ -5507,16 +5511,16 @@ Ext.LoadMask = Ext.extend(Ext.util.Observable, {
      * @type Boolean
      */
     disabled: false,
-    
+
     constructor : function(el, config) {
         this.el = Ext.get(el);
         Ext.apply(this, config);
-        
+
         this.addEvents('show', 'hide');
         if (this.store) {
             this.bindStore(this.store, true);
         }
-        Ext.LoadMask.superclass.constructor.call(this);        
+        Ext.LoadMask.superclass.constructor.call(this);
     },
 
     /**
@@ -5543,7 +5547,7 @@ Ext.LoadMask = Ext.extend(Ext.util.Observable, {
                 load: this.onLoad,
                 exception: this.onLoad
             });
-            
+
         }
         this.store = store;
         if (store && store.isLoading()) {
@@ -5572,7 +5576,7 @@ Ext.LoadMask = Ext.extend(Ext.util.Observable, {
     isDisabled : function() {
         return this.disabled;
     },
-    
+
     // private
     onLoad : function() {
         this.el.unmask();
@@ -5582,7 +5586,7 @@ Ext.LoadMask = Ext.extend(Ext.util.Observable, {
     // private
     onBeforeLoad : function() {
         if (!this.disabled) {
-            this.el.mask('<div class="x-loading-spinner"><span class="x-loading-top"></span><span class="x-loading-right"></span><span class="x-loading-bottom"></span><span class="x-loading-left"></span></div><div class="x-loading-msg">' + this.msg + '</div>', this.msgCls, false);
+            this.el.mask(Ext.LoadingSpinner + '<div class="x-loading-msg">' + this.msg + '</div>', this.msgCls, false);
             this.fireEvent('show', this, this.el, this.store);
         }
     },
@@ -5607,3 +5611,6 @@ Ext.LoadMask = Ext.extend(Ext.util.Observable, {
         this.clearListeners();
     }
 });
+
+Ext.LoadingSpinner = '<div class="x-loading-spinner"><span class="x-loading-top"></span><span class="x-loading-right"></span><span class="x-loading-bottom"></span><span class="x-loading-left"></span></div>';
+

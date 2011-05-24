@@ -149,9 +149,10 @@ Ext.data.RestProxy = Ext.extend(Ext.data.AjaxProxy, {
      * so that additional parameters like the cache buster string are appended
      */
     buildUrl: function(request) {
-        var record = request.operation.records[0],
-            format = this.format,
-            url    = request.url || this.url;
+        var records = request.operation.records || [],
+            record  = records[0],
+            format  = this.format,
+            url     = request.url || this.url;
         
         if (this.appendId && record) {
             if (!url.match(/\/$/)) {

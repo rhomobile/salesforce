@@ -12,11 +12,11 @@ Ext.ControllerManager = new Ext.AbstractManager({
     register: function(id, options) {
         options.id = id;
         
-        var controller = new Ext.Controller(options);
+        Ext.applyIf(options, {
+            application: Ext.ApplicationManager.currentApplication
+        });
         
-        if (this.getCount() > 0) {
-            controller.application = this.all.getValues()[0];
-        }
+        var controller = new Ext.Controller(options);
         
         if (controller.init) {
             controller.init();
