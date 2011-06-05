@@ -1,5 +1,3 @@
-gem 'soap4r'
-require 'defaultDriver'
 require 'json'
 require 'rest_client'
 
@@ -10,9 +8,7 @@ class Saccount < SourceAdapter
  
   def login
     puts "LOGIN USER: #{current_user.login}"
-    auth = ClientAuthHeaderHandler.new
     @sessionid = Store.get_value("#{current_user.login}:session")
-    auth.sessionid =  @sessionid
     endpoint_url = Store.get_value("#{current_user.login}:endpoint_url")
 
     @resturl = endpoint_url + "/services/data/v20.0"
@@ -30,8 +26,6 @@ class Saccount < SourceAdapter
     }
     
     @fields = []
-    #puts "#{resturl}/Account/describe/"
-    #puts "Authorization: OAuth #{@sessionid.split('!')[1]}"
     parsed=
     JSON.parse(
       RestClient.get(
