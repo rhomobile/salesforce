@@ -54,16 +54,16 @@ class Scontact < SourceAdapter
 
       field = {}
       xtype = "textfield"
-      type = "sfsenchagenericfield"
+      type = "textfield"
       selectoptions = []
       
       if f["type"] == "reference"
-        type = 'sfsenchalinkfield'
+        type = 'reference'
         f["label"].gsub!(/ ID/,"")
       elsif f["type"] == "id"
-        xtype = 'hiddenfield'
+        type = 'hiddenfield'
       elsif f["type"] == "picklist"
-        xtype = 'selectfield'
+        type = 'selectfield'
         selectoptions << {:text => "", :value => ""}
         f["picklistValues"].each do |v|
           option = {}
@@ -73,18 +73,18 @@ class Scontact < SourceAdapter
         end
       elsif f["type"] == "boolean"
         #sencha toggle broken, textfield for now
-        xtype = 'textfield'
+        type = 'boolfield'
       elsif f["type"] == "textarea"
-        xtype = 'textareafield'
+        type = 'textarea'
       elsif f["type"] == "email"
-        xtype = 'emailfield'
+        type = 'textfield'
       elsif f["type"] == "date"
-        xtype = 'datepickerfield'
+        type = 'textfield'
       end
               
       
-      if not f["updateable"] and xtype == 'textfield'
-        type = 'sfsenchareadonlytext'
+      if not f["updateable"] and type == 'textfield' 
+        type = 'readonlytext'
       end
       
       field = {
@@ -93,15 +93,16 @@ class Scontact < SourceAdapter
         :name => "#{key}",
         :type => type,
         :fieldtype => f["type"],
-        :linkto => f["referenceTo"][0]
+        :linkto => f["referenceTo"][0],
+        :value => "{{@crmobject/#{key}}}"
       }
       
-      field[:options] = selectoptions.to_json if xtype == 'selectfield'
+      field[:options] = selectoptions.to_json if type == 'selectfield'
       
       show << field
     end
 
-    {'showfields' => {:type => 'senchafieldset', :children => show}, 'datafields' => data}.to_json
+    {'showfields' => {:type => 'form', :children => show}, 'datafields' => data}.to_json
   end
 
   def query(params=nil)

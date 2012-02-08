@@ -1,0 +1,39 @@
+
+{
+	xtype: 'textfield',
+	cls: 'linkfield',
+	name : '<%= @doc_def["name"].gsub(/'/,"\\'") %>',
+  label: '<%= @doc_def["label"].gsub(/'/,"\\'") %>',
+  link_to: '<%= @doc_def["linkto"] %>',
+	listeners: {
+		focus: function() {
+			if(this.value && this.value != "") {
+				current = global.nav_stack[global.nav_stack.length - 1];
+				obj_id = get_id_for_field(current['model'],current['id'],this.name);
+				global.nav_stack.push({'id':obj_id,'model':this.link_to});
+				navigate();
+			}
+			this.blur();
+		}
+	},
+	useClearIcon: false,
+	renderTpl: [
+        '<tpl if="label">',
+            '<div class="x-form-label"><span>{label}</span></div>',
+        '</tpl>',
+        '<tpl if="fieldEl">',
+            '<div class="x-form-field-container"><input READONLY id="{inputId}" type="{inputType}" name="{name}" class="{fieldCls}"',
+                '<tpl if="tabIndex">tabIndex="{tabIndex}" </tpl>',
+                '<tpl if="placeHolder">placeholder="{placeHolder}" </tpl>',
+                '<tpl if="style">style="{style}" </tpl>',
+                '<tpl if="maxlength">maxlength="{maxlength}" </tpl>',
+                '<tpl if="autoComplete">autocomplete="{autoComplete}" </tpl>',
+                '<tpl if="autoCapitalize">autocapitalize="{autoCapitalize}" </tpl>',
+                '<tpl if="autoCorrect">autocorrect="{autoCorrect}" </tpl> />',
+            '<tpl if="useMask"><div class="x-field-mask"></div></tpl>',
+            '</div>',
+            '<tpl if="useClearIcon"><div class="x-field-clear-container"><div class="x-field-clear x-hidden-visibility">&#215;</div></div></tpl>',
+        '</tpl>'
+    ]
+	
+},

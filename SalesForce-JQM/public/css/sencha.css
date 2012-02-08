@@ -1,0 +1,44 @@
+.x-indexbar-item {
+	font-size: 0.47em;
+	line-height: 1.5em;
+}
+
+body, html {
+	overflow:hidden;
+}
+
+body {
+	background:url(/public/images/backgrounds/bg-welcome.png) repeat;
+}
+
+.x-form-label {
+	padding: 3px;
+}
+.x-field {
+	min-height: 30px;
+}
+
+.x-form-label span {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.x-form-field-container input, .x-form-field-container textarea {
+	font-size: 13px;
+}
+
+.x-form .x-panel-body {
+	padding: 0;
+	margin-left: 3px;
+}
+
+.x-form-fieldset-title {
+	margin: .5em .4em .3em;
+}
+.x-form-field-container {
+	background: white;
+}
+
+.linkfield input {
+    background: url('/public/images/iphone/disclosure.png') no-repeat center right;
+}

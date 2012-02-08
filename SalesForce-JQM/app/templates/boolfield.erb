@@ -1,0 +1,7 @@
+<div data-role="fieldcontain">
+    <label ><%= @doc_def["label"] %></label>
+    <select name="<%= @doc_def["name"]%>" data-role="slider">
+			<option <%= "true" == @doc_def["value"] ? "selected" : "" %> value="true">Yes</option>
+			<option <%= "false" == @doc_def["value"] ? "selected" : "" %> value="false">No</option>
+		</select>
+</div>

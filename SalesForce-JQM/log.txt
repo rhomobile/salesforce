@@ -1,0 +1,1681 @@
+{
+  "totalSize" : 44,
+  "done" : true,
+  "records" : [ {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wHvtCAE"
+    },
+    "Id" : "0D550000003wHvtCAE",
+    "ParentId" : "0015000000XJhDqAAL",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0015000000XJhDqAAL"
+      },
+      "Type" : "Account"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:20:35.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkegCAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wHwACAU"
+    },
+    "Id" : "0D550000003wHwACAU",
+    "ParentId" : "0015000000XJhDvAAL",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0015000000XJhDvAAL"
+      },
+      "Type" : "Account"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:21:24.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkm6CAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI1ACAU"
+    },
+    "Id" : "0D550000003wI1ACAU",
+    "ParentId" : "0035000000l4Q0bAAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q0bAAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:23:20.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkqBCAQ"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI53CAE"
+    },
+    "Id" : "0D550000003wI53CAE",
+    "ParentId" : "0035000000l4Q4XAAU",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q4XAAU"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:23:51.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkr0CAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI5rCAE"
+    },
+    "Id" : "0D550000003wI5rCAE",
+    "ParentId" : "0035000000l4PxFAAU",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4PxFAAU"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:24:31.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkfyCAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI6QCAU"
+    },
+    "Id" : "0D550000003wI6QCAU",
+    "ParentId" : "0035000000l4Q5uAAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q5uAAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:25:02.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkshCAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI6zCAE"
+    },
+    "Id" : "0D550000003wI6zCAE",
+    "ParentId" : "0035000000l4Q5bAAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q5bAAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:25:26.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mktWCAQ"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI7jCAE"
+    },
+    "Id" : "0D550000003wI7jCAE",
+    "ParentId" : "0015000000XJhIHAA1",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0015000000XJhIHAA1"
+      },
+      "Type" : "Account"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:26:23.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkuUCAQ"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI8bCAE"
+    },
+    "Id" : "0D550000003wI8bCAE",
+    "ParentId" : "0035000000l4Q7JAAU",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q7JAAU"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:26:43.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkvSCAQ"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI8vCAE"
+    },
+    "Id" : "0D550000003wI8vCAE",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:27:07.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkvnCAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI9ACAU"
+    },
+    "Id" : "0D550000003wI9ACAU",
+    "ParentId" : "0035000000l4PzHAAU",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4PzHAAU"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:27:22.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkvECAQ"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wI9aCAE"
+    },
+    "Id" : "0D550000003wI9aCAE",
+    "ParentId" : "0035000000l4Q9IAAU",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q9IAAU"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T19:27:47.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mkwZCAQ"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wLcjCAE"
+    },
+    "Id" : "0D550000003wLcjCAE",
+    "ParentId" : "0015000000XJiawAAD",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0015000000XJiawAAD"
+      },
+      "Type" : "Account"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T22:34:28.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mpTyCAI"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000003wLjDCAU"
+    },
+    "Id" : "0D550000003wLjDCAU",
+    "ParentId" : "0015000000XJibQAAT",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0015000000XJibQAAT"
+      },
+      "Type" : "Account"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-11-18T22:37:04.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000004mpc5CAA"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XytvCAC"
+    },
+    "Id" : "0D550000004XytvCAC",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-08T22:38:48.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D6500000058s54CAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam3"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004Xyz8CAC"
+    },
+    "Id" : "0D550000004Xyz8CAC",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-08T22:39:16.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D6500000058sAhCAI"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam3",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XzcFCAS"
+    },
+    "Id" : "0D550000004XzcFCAS",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-08T23:47:19.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D6500000058t07CAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam4"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XzfgCAC"
+    },
+    "Id" : "0D550000004XzfgCAC",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-08T23:48:41.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D6500000058t11CAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam4",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XzUnCAK"
+    },
+    "Id" : "0D550000004XzUnCAK",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-08T23:53:43.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D6500000058snyCAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam3"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XzleCAC"
+    },
+    "Id" : "0D550000004XzleCAC",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-09T00:02:37.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gSIpCAM"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam3",
+        "NewValue" : "Adam4"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XziSCAS"
+    },
+    "Id" : "0D550000004XziSCAS",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-09T00:03:15.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D6500000058t4JCAQ"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam4",
+        "NewValue" : "Adam5"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XzluCAC"
+    },
+    "Id" : "0D550000004XzluCAC",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-09T00:03:35.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gSJ1CAM"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam5",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004XziyCAC"
+    },
+    "Id" : "0D550000004XziyCAC",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-09T00:07:47.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gSLdCAM"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam5"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004Y0DPCA0"
+    },
+    "Id" : "0D550000004Y0DPCA0",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-09T01:04:32.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gSmnCAE"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam5",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YEHhCAO"
+    },
+    "Id" : "0D550000004YEHhCAO",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T01:24:21.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gjh8CAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam3"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YEHwCAO"
+    },
+    "Id" : "0D550000004YEHwCAO",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T01:25:29.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gjhSCAQ"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam3",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YELZCA4"
+    },
+    "Id" : "0D550000004YELZCA4",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T01:50:36.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gjmJCAQ"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam4"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YEKTCA4"
+    },
+    "Id" : "0D550000004YEKTCA4",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T01:52:02.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gjmTCAQ"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam4",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YDYyCAO"
+    },
+    "Id" : "0D550000004YDYyCAO",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T01:52:22.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005giwoCAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam56"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YDYzCAO"
+    },
+    "Id" : "0D550000004YDYzCAO",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T01:57:36.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005giwpCAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam56",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YEPcCAO"
+    },
+    "Id" : "0D550000004YEPcCAO",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T02:13:33.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gjqzCAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam4"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YEPhCAO"
+    },
+    "Id" : "0D550000004YEPhCAO",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T02:13:57.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005gjr4CAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam4",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YKqCCAW"
+    },
+    "Id" : "0D550000004YKqCCAW",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T17:09:54.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005groBCAQ"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam",
+        "NewValue" : "Adam5"
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000004YKqhCAG"
+    },
+    "Id" : "0D550000004YKqhCAG",
+    "ParentId" : "0035000000l4Q86AAE",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/0035000000l4Q86AAE"
+      },
+      "Type" : "Contact"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2010-12-10T17:10:27.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000005groqCAA"
+        },
+        "FieldName" : "Contact.FirstName",
+        "OldValue" : "Adam5",
+        "NewValue" : "Adam"
+      } ]
+    },
+    "FeedComments" : {
+      "totalSize" : 2,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedComment",
+          "url" : "/services/data/v20.0/sobjects/FeedComment/0D750000000CgghCAC"
+        },
+        "Id" : "0D750000000CgghCAC",
+        "CommentBody" : "Adam sure is changed a lot!",
+        "CreatedDate" : "2011-01-18T18:06:52.000+0000",
+        "CreatedById" : "00550000001J8xJAAS",
+        "CreatedBy" : {
+          "attributes" : {
+            "type" : "Name",
+            "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+          },
+          "FirstName" : "Brian",
+          "LastName" : "Moore"
+        },
+        "FeedItemId" : "0D550000004YKqhCAG"
+      }, {
+        "attributes" : {
+          "type" : "FeedComment",
+          "url" : "/services/data/v20.0/sobjects/FeedComment/0D750000000CggmCAC"
+        },
+        "Id" : "0D750000000CggmCAC",
+        "CommentBody" : "Here is another comment.",
+        "CreatedDate" : "2011-01-18T18:07:39.000+0000",
+        "CreatedById" : "00550000001J8xJAAS",
+        "CreatedBy" : {
+          "attributes" : {
+            "type" : "Name",
+            "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+          },
+          "FirstName" : "Brian",
+          "LastName" : "Moore"
+        },
+        "FeedItemId" : "0D550000004YKqhCAG"
+      } ]
+    }
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005CKFZCA4"
+    },
+    "Id" : "0D550000005CKFZCA4",
+    "ParentId" : "00550000001JE1aAAG",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001JE1aAAG"
+      },
+      "Type" : "User"
+    },
+    "Type" : "TrackedChange",
+    "CreatedDate" : "2011-01-07T20:18:39.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : null,
+    "FeedTrackedChanges" : {
+      "totalSize" : 1,
+      "done" : true,
+      "records" : [ {
+        "attributes" : {
+          "type" : "FeedTrackedChange",
+          "url" : "/services/data/v20.0/sobjects/FeedTrackedChange/0D650000006S6ISCA0"
+        },
+        "FieldName" : "created",
+        "OldValue" : null,
+        "NewValue" : null
+      } ]
+    },
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vLADCA2"
+    },
+    "Id" : "0D550000005vLADCA2",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "UserStatus",
+    "CreatedDate" : "2011-01-18T18:06:43.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c3GuCAI"
+      },
+      "Body" : "Trying to figure out Chatter APIs",
+      "Title" : null,
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vMDICA2"
+    },
+    "Id" : "0D550000005vMDICA2",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "LinkPost",
+    "CreatedDate" : "2011-01-18T19:03:34.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c3HdCAI"
+      },
+      "Body" : "Link post",
+      "Title" : "google",
+      "LinkUrl" : "http://google.com"
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vMkJCAU"
+    },
+    "Id" : "0D550000005vMkJCAU",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "ContentPost",
+    "CreatedDate" : "2011-01-18T19:14:04.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c3RrCAI"
+      },
+      "Body" : "Uploaded file",
+      "Title" : "activitylog",
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vSNSCA2"
+    },
+    "Id" : "0D550000005vSNSCA2",
+    "ParentId" : "00550000001JE1aAAG",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001JE1aAAG"
+      },
+      "Type" : "User"
+    },
+    "Type" : "UserStatus",
+    "CreatedDate" : "2011-01-18T23:17:19.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001JE1aAAG"
+      },
+      "Name" : "Lars Burgess"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c4rJCAQ"
+      },
+      "Body" : "doing cool stuff!",
+      "Title" : null,
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vS5QCAU"
+    },
+    "Id" : "0D550000005vS5QCAU",
+    "ParentId" : "00550000001JE1aAAG",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001JE1aAAG"
+      },
+      "Type" : "User"
+    },
+    "Type" : "UserStatus",
+    "CreatedDate" : "2011-01-18T23:17:30.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001JE1aAAG"
+      },
+      "Name" : "Lars Burgess"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c4rOCAQ"
+      },
+      "Body" : "@brian you gots dis?",
+      "Title" : null,
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vn25CAA"
+    },
+    "Id" : "0D550000005vn25CAA",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "ContentPost",
+    "CreatedDate" : "2011-01-19T22:31:36.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c7KfCAI"
+      },
+      "Body" : "Check out this file",
+      "Title" : "File name",
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vpSDCAY"
+    },
+    "Id" : "0D550000005vpSDCAY",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "TextPost",
+    "CreatedDate" : "2011-01-20T01:10:26.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c7qfCAA"
+      },
+      "Body" : "spec test generated message",
+      "Title" : null,
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vpSSCAY"
+    },
+    "Id" : "0D550000005vpSSCAY",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "TextPost",
+    "CreatedDate" : "2011-01-20T01:10:59.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c7qkCAA"
+      },
+      "Body" : "spec test generated message",
+      "Title" : null,
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  }, {
+    "attributes" : {
+      "type" : "NewsFeed",
+      "url" : "/services/data/v20.0/sobjects/NewsFeed/0D550000005vpSJCAY"
+    },
+    "Id" : "0D550000005vpSJCAY",
+    "ParentId" : "00550000001J8xJAAS",
+    "Parent" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Type" : "User"
+    },
+    "Type" : "TextPost",
+    "CreatedDate" : "2011-01-20T01:12:07.000+0000",
+    "CreatedBy" : {
+      "attributes" : {
+        "type" : "Name",
+        "url" : "/services/data/v20.0/sobjects/Name/00550000001J8xJAAS"
+      },
+      "Name" : "Brian Moore"
+    },
+    "FeedPost" : {
+      "attributes" : {
+        "type" : "FeedPost",
+        "url" : "/services/data/v20.0/sobjects/FeedPost/0F750000000c7qpCAA"
+      },
+      "Body" : "spec test generated message",
+      "Title" : null,
+      "LinkUrl" : null
+    },
+    "FeedTrackedChanges" : null,
+    "FeedComments" : null
+  } ]
+}

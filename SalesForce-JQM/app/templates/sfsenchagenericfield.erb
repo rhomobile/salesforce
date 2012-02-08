@@ -1,0 +1,10 @@
+
+{
+	xtype: '<%= @doc_def["xtype"] %>',
+	name : '<%= @doc_def["name"].gsub(/'/,"\\'") %>',
+  <%if @doc_def["options"]%>
+	options: <%= @doc_def["options"] %>,
+	<%end%>
+  label: '<%= @doc_def["label"].gsub(/'/,"\\'") %>',
+  useClearIcon: false
+},

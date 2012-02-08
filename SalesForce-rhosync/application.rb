@@ -1,6 +1,3 @@
-require 'rubygems'
-gem 'soap4r'
-require 'sources/defaultDriver'
 
 
 class Application < Rhosync::Base
@@ -20,11 +17,11 @@ class Application < Rhosync::Base
           "Accept" => "*/*", 
           "X-PrettyPrint" => "1"
         }
-
+        
         data = JSON.parse(RestClient.post(requesturl, params, headers))
-
+        puts "Logged in"
         headers["Authorization"] = "OAuth #{data["access_token"].split('!')[1]}" 
-
+        
         id_data = JSON.parse(RestClient.get(data["id"],headers))
         
         username = id_data["username"] 

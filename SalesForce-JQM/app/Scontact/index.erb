@@ -1,0 +1,22 @@
+<div data-role="page">
+<div data-role="header" data-theme="b">
+  <h1>Contacts</h1>
+	<a class="ui-btn-right" href="<%= url_for :action => :new %>">New</a>
+</div>
+
+
+
+<div data-role="content">
+  <ul data-role="listview">
+    <% @scontacts.each do |scontact| %>
+    
+        <li>
+          <a href="<%= url_for :action => :show, :id => scontact.object %>">
+            <%= scontact.name %>
+          </a>
+        </li>
+    
+    <% end %>
+  </ul>
+</div>
+</div>

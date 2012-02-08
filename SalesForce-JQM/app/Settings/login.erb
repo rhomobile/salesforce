@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>SalesForce</title>
+    
+    <% is_bb6 = System::get_property('platform') == 'Blackberry' && (System::get_property('os_version') =~ /^6\.0/) %>
+
+    <% if is_bb6 %>    
+        <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <% else %>        
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>        
+    <% end %>
+    
+        <link href="/public/jqm/jquery.mobile-1.0a4.1.css" type="text/css" rel="stylesheet"/>
+		<link href="/public/css/login.css" type="text/css" rel="stylesheet">
+
+
+</head>
+
+	<body>
+
+<div class="welcome">
+	<header id="header">
+		<p>Please make sure you are connected to the internet and then select the button below to log in</p>
+	</header>
+	<br/><br/>
+	<input style="width: 50%;" type="button" value="Login" onclick="javascript:window.location='/app/Settings/oauth';"/>
+</div><br/>
+</body>
+
+</html>
+

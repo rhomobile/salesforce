@@ -1,0 +1,17 @@
+<div data-role="page"  data-cache="never">
+	<div data-role="header">
+		<h1><%= @crmobject.name %></h1>
+		<a data-icon="back"  href="<%= url_for :action => :index %>">Back</a>
+
+		<a data-icon="check" class="ui-btn-right" href="<%= url_for :action => :edit, :id => @crmobject.object %>">Edit</a>
+	</div>
+
+
+
+	<div data-role="content">
+		<form method="POST" action="<%= url_for :action => :update %>">
+			<input type="hidden" name="id" value="<%= @crmobject.object %>"/>
+			<%= render_metadata('showfields') %>
+		</form>
+	</div>
+</div>

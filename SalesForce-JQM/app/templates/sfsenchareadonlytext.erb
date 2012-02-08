@@ -1,0 +1,28 @@
+
+{
+	xtype: 'textfield',
+	cls: 'readonlyfield',
+	name : '<%= @doc_def["name"].gsub(/'/,"\\'") %>',
+  label: '<%= @doc_def["label"].gsub(/'/,"\\'") %>',
+  link_to: '<%= @doc_def["linkto"] %>',
+	useClearIcon: false,
+	renderTpl: [
+        '<tpl if="label">',
+            '<div class="x-form-label"><span>{label}</span></div>',
+        '</tpl>',
+        '<tpl if="fieldEl">',
+            '<div class="x-form-field-container"><input READONLY id="{inputId}" type="{inputType}" name="{name}" class="{fieldCls}"',
+                '<tpl if="tabIndex">tabIndex="{tabIndex}" </tpl>',
+                '<tpl if="placeHolder">placeholder="{placeHolder}" </tpl>',
+                '<tpl if="style">style="{style}" </tpl>',
+                '<tpl if="maxlength">maxlength="{maxlength}" </tpl>',
+                '<tpl if="autoComplete">autocomplete="{autoComplete}" </tpl>',
+                '<tpl if="autoCapitalize">autocapitalize="{autoCapitalize}" </tpl>',
+                '<tpl if="autoCorrect">autocorrect="{autoCorrect}" </tpl> />',
+            '<tpl if="useMask"><div class="x-field-mask"></div></tpl>',
+            '</div>',
+            '<tpl if="useClearIcon"><div class="x-field-clear-container"><div class="x-field-clear x-hidden-visibility">&#215;</div></div></tpl>',
+        '</tpl>'
+    ]
+	
+},

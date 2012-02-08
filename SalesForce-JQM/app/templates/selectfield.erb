@@ -1,0 +1,8 @@
+<div data-role="fieldcontain">
+    <label ><%= @doc_def["label"] %></label>
+    <select name="<%= @doc_def["name"]%>">
+			<% Rho::JSON.parse(@doc_def["options"]).each do |option|%>
+			<option <%= option["value"] == @doc_def["value"] ? "selected" : "" %> value="<%=option["value"]%>"><%=option["text"]%></option>
+			<%end%>
+		</select>
+</div>
